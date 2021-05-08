@@ -9,7 +9,7 @@ import router from './router';
 import * as config from './shared/config/config';
 import * as bootstrapVueConfig from './shared/config/config-bootstrap-vue';
 import JhiItemCountComponent from './shared/jhi-item-count.vue';
-import SearchPathsForm from "@/fo/search-paths-form/search-paths-form.vue";
+import SearchPathsForm from '@/fo/search-paths-form/search-paths-form.vue';
 import JhiSortIndicatorComponent from './shared/sort/jhi-sort-indicator.vue';
 import InfiniteLoading from 'vue-infinite-loading';
 import HealthService from './admin/health/health.service';

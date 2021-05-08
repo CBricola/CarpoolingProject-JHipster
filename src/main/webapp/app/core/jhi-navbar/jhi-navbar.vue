@@ -13,7 +13,7 @@
       aria-expanded="false"
       aria-label="Toggle navigation"
     >
-      <font-awesome-icon icon="bars"/>
+      <font-awesome-icon icon="bars" />
     </b-navbar-toggle>
 
     <b-collapse is-nav id="header-tabs">
@@ -24,10 +24,9 @@
         <!--            <span>Home</span>-->
         <!--          </span>-->
         <!--        </b-nav-item>-->
-        <b-nav-item-dropdown right id="entity-menu" v-if="authenticated" active-class="active" class="pointer"
-                             data-cy="entity">
+        <b-nav-item-dropdown right id="entity-menu" v-if="authenticated" active-class="active" class="pointer" data-cy="entity">
           <span slot="button-content" class="navbar-dropdown-menu">
-            <font-awesome-icon icon="th-list"/>
+            <font-awesome-icon icon="th-list" />
             <span class="no-bold">Gestion</span>
           </span>
           <!--          <b-dropdown-item to="/member">-->
@@ -35,15 +34,15 @@
           <!--            <span>Member</span>-->
           <!--          </b-dropdown-item>-->
           <b-dropdown-item to="/admin/user-management" active-class="active">
-            <font-awesome-icon icon="users"/>
+            <font-awesome-icon icon="users" />
             <span>Utilisateurs</span>
           </b-dropdown-item>
           <b-dropdown-item to="/path">
-            <font-awesome-icon icon="asterisk"/>
+            <font-awesome-icon icon="asterisk" />
             <span>Trajets</span>
           </b-dropdown-item>
           <b-dropdown-item to="/registration">
-            <font-awesome-icon icon="asterisk"/>
+            <font-awesome-icon icon="asterisk" />
             <span>Inscriptions trajets</span>
           </b-dropdown-item>
           <!-- jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here -->
@@ -87,43 +86,40 @@
         <!--          </b-dropdown-item>-->
         <!--        </b-nav-item-dropdown>-->
 
-        <b-nav-item-dropdown v-if="authenticated"
-                             right
-                             href="javascript:void(0);"
-                             id="account-menu"
-                             :class="{ 'router-link-active': subIsActive('/account') }"
-                             active-class="active"
-                             class="pointer"
-                             data-cy="accountMenu"
+        <b-nav-item-dropdown
+          v-if="authenticated"
+          right
+          href="javascript:void(0);"
+          id="account-menu"
+          :class="{ 'router-link-active': subIsActive('/account') }"
+          active-class="active"
+          class="pointer"
+          data-cy="accountMenu"
         >
           <span slot="button-content" class="navbar-dropdown-menu">
-            <font-awesome-icon icon="user"/>
+            <font-awesome-icon icon="user" />
             <span class="no-bold"> Mon profil </span>
           </span>
-          <b-dropdown-item data-cy="settings" to="/account/settings" tag="b-dropdown-item" v-if="authenticated"
-                           active-class="active">
-            <font-awesome-icon icon="wrench"/>
+          <b-dropdown-item data-cy="settings" to="/account/settings" tag="b-dropdown-item" v-if="authenticated" active-class="active">
+            <font-awesome-icon icon="wrench" />
             <span>Paramètres</span>
           </b-dropdown-item>
-          <b-dropdown-item data-cy="passwordItem" to="/account/password" tag="b-dropdown-item" v-if="authenticated"
-                           active-class="active">
-            <font-awesome-icon icon="lock"/>
+          <b-dropdown-item data-cy="passwordItem" to="/account/password" tag="b-dropdown-item" v-if="authenticated" active-class="active">
+            <font-awesome-icon icon="lock" />
             <span>Mot de passe</span>
           </b-dropdown-item>
-          <b-dropdown-item data-cy="logout" v-if="authenticated" v-on:click="logout()" id="logout"
-                           active-class="active">
-            <font-awesome-icon icon="sign-out-alt"/>
+          <b-dropdown-item data-cy="logout" v-if="authenticated" v-on:click="logout()" id="logout" active-class="active">
+            <font-awesome-icon icon="sign-out-alt" />
             <span>Déconnexion</span>
           </b-dropdown-item>
         </b-nav-item-dropdown>
 
         <b-nav-item v-if="!authenticated" v-on:click="openLogin()">
-                    <span>
-                      <font-awesome-icon icon="user"/>
-                      <span>Connexion / inscription</span>
-                    </span>
+          <span>
+            <font-awesome-icon icon="user" />
+            <span>Connexion / inscription</span>
+          </span>
         </b-nav-item>
-
       </b-navbar-nav>
     </b-collapse>
   </b-navbar>

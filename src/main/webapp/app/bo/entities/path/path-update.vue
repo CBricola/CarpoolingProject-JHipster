@@ -34,8 +34,7 @@
             </div>
             <div v-if="$v.path.date.$anyDirty && $v.path.date.$invalid">
               <small class="form-text text-danger" v-if="!$v.path.date.required"> Merci de saisir une date.</small>
-              <small class="form-text text-danger" v-if="!$v.path.date.ZonedDateTimelocal"> Merci de saisir la date et
-                l'heure.</small>
+              <small class="form-text text-danger" v-if="!$v.path.date.ZonedDateTimelocal"> Merci de saisir la date et l'heure.</small>
             </div>
           </div>
           <div class="form-group">
@@ -51,10 +50,10 @@
               required
             />
             <div v-if="$v.path.numberOfPassengers.$anyDirty && $v.path.numberOfPassengers.$invalid">
-              <small class="form-text text-danger" v-if="!$v.path.numberOfPassengers.required"> Merci de saisir le
-                nombre de passagers.</small>
-              <small class="form-text text-danger" v-if="!$v.path.numberOfPassengers.numeric"> Merci de saisir un
-                nombre.</small>
+              <small class="form-text text-danger" v-if="!$v.path.numberOfPassengers.required">
+                Merci de saisir le nombre de passagers.</small
+              >
+              <small class="form-text text-danger" v-if="!$v.path.numberOfPassengers.numeric"> Merci de saisir un nombre.</small>
             </div>
           </div>
           <div class="form-group">
@@ -68,11 +67,10 @@
               :class="{ valid: !$v.path.departurePlace.$invalid, invalid: $v.path.departurePlace.$invalid }"
               v-model="$v.path.departurePlace.$model"
               required
-              :disabled="pathType =='retour'"
+              :disabled="pathType == 'retour'"
             />
             <div v-if="$v.path.departurePlace.$anyDirty && $v.path.departurePlace.$invalid">
-              <small class="form-text text-danger" v-if="!$v.path.departurePlace.required"> Merci de saisir votre lieu
-                de départ.</small>
+              <small class="form-text text-danger" v-if="!$v.path.departurePlace.required"> Merci de saisir votre lieu de départ.</small>
             </div>
           </div>
           <div class="form-group">
@@ -89,8 +87,7 @@
               :disabled="pathType == 'aller'"
             />
             <div v-if="$v.path.arrivalPlace.$anyDirty && $v.path.arrivalPlace.$invalid">
-              <small class="form-text text-danger" v-if="!$v.path.arrivalPlace.required">Merci de saisir votre lieu
-                d'arrivée.</small>
+              <small class="form-text text-danger" v-if="!$v.path.arrivalPlace.required">Merci de saisir votre lieu d'arrivée.</small>
             </div>
           </div>
 
@@ -107,7 +104,6 @@
           <!--              </option>-->
           <!--            </select>-->
           <!--          </div>-->
-
         </div>
         <div>
           <button type="button" id="cancel-save" class="btn btn-secondary" v-on:click="previousState()">
