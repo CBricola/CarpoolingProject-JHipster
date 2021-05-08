@@ -42,7 +42,9 @@
         <p></p>
         <div>
           <b-alert show variant="warning">
-            <b-link :to="'/account/reset/request'" class="alert-link" data-cy="forgetYourPasswordSelector">Mot de passe oublié ?</b-link>
+            <b-link :to="'/account/reset/request'" class="alert-link" data-cy="forgetYourPasswordSelector"
+              >Mot de passe oublié ?</b-link
+            >
           </b-alert>
         </div>
         <div>

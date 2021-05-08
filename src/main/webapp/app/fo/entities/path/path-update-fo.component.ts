@@ -4,6 +4,7 @@ import { required, numeric } from 'vuelidate/lib/validators';
 import dayjs from 'dayjs';
 import { DATE_TIME_LONG_FORMAT } from '@/shared/date/filters';
 
+
 import RegistrationService from '@/bo/entities/registration/registration.service';
 import { IRegistration } from '@/shared/model/registration.model';
 
@@ -68,11 +69,11 @@ export default class PathUpdateFo extends Vue {
     );
   }
 
-  public updatePathType() {
-    if (this.pathType == 'aller') {
+  public updatePathType(){
+    if(this.pathType == 'aller'){
       this.path.arrivalPlace = 'Orange Atalante';
       this.path.departurePlace = '';
-    } else if (this.pathType == 'retour') {
+    } else if(this.pathType == 'retour'){
       this.path.departurePlace = 'Orange Atalante';
       this.path.arrivalPlace = '';
     }

@@ -68,11 +68,11 @@ export default class PathUpdate extends Vue {
     );
   }
 
-  public updatePathType() {
-    if (this.pathType == 'aller') {
+  public updatePathType(){
+    if(this.pathType == 'aller'){
       this.path.arrivalPlace = 'Orange Atalante';
       this.path.departurePlace = '';
-    } else if (this.pathType == 'retour') {
+    } else if(this.pathType == 'retour'){
       this.path.departurePlace = 'Orange Atalante';
       this.path.arrivalPlace = '';
     }
