@@ -1,0 +1,30 @@
+entity Member {
+    firstName String required
+    lastName String required
+    professionalEmail String required
+    phone String required
+}
+
+entity Path {
+    date Instant required
+    numberOfPassengers Integer required
+    departurePlace String required
+    arrivalPlace String required
+}
+
+entity Registration {
+}
+
+relationship OneToMany {
+    Member to Path,
+    Member to Registration
+    Path to Registration,
+}
+
+paginate Member with pagination
+paginate Path with pagination
+paginate Registration with pagination
+
+service Member with serviceClass
+service Path with serviceClass
+service Registration with serviceClass

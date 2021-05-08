@@ -1,0 +1,49 @@
+{
+  "name": "Member",
+  "fields": [
+    {
+      "fieldName": "firstName",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "lastName",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "professionalEmail",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "phone",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "path",
+      "otherEntityRelationshipName": "member",
+      "relationshipName": "path"
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "registration",
+      "otherEntityRelationshipName": "member",
+      "relationshipName": "registration"
+    }
+  ],
+  "entityTableName": "member",
+  "dto": "no",
+  "pagination": "pagination",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20210505095457"
+}

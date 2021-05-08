@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
+    <!--
+        Added the constraints for entity Registration.
+    -->
+    <changeSet id="20210505095459-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="member_id"
+                                 baseTableName="registration"
+                                 constraintName="fk_registration__member_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="member"/>
+
+        <addForeignKeyConstraint baseColumnNames="path_id"
+                                 baseTableName="registration"
+                                 constraintName="fk_registration__path_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="path"/>
+    </changeSet>
+</databaseChangeLog>

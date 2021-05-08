@@ -1,0 +1,112 @@
+<template>
+  <div class="row justify-content-center">
+    <div class="col-8">
+      <form name="editForm" role="form" novalidate v-on:submit.prevent="save()">
+        <h2 id="cocovoitApp.path.home.createOrEditLabel" data-cy="PathCreateUpdateHeading">Create or edit a Path</h2>
+        <div>
+          <div class="form-group" v-if="path.id">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id" v-model="path.id" readonly />
+          </div>
+          <div class="form-group">
+            <label class="form-control-label" for="path-date">Date</label>
+            <div class="d-flex">
+              <input
+                id="path-date"
+                data-cy="date"
+                type="datetime-local"
+                class="form-control"
+                name="date"
+                :class="{ valid: !$v.path.date.$invalid, invalid: $v.path.date.$invalid }"
+                required
+                :value="convertDateTimeFromServer($v.path.date.$model)"
+                @change="updateInstantField('date', $event)"
+              />
+            </div>
+            <div v-if="$v.path.date.$anyDirty && $v.path.date.$invalid">
+              <small class="form-text text-danger" v-if="!$v.path.date.required"> This field is required. </small>
+              <small class="form-text text-danger" v-if="!$v.path.date.ZonedDateTimelocal"> This field should be a date and time. </small>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-control-label" for="path-numberOfPassengers">Number Of Passengers</label>
+            <input
+              type="number"
+              class="form-control"
+              name="numberOfPassengers"
+              id="path-numberOfPassengers"
+              data-cy="numberOfPassengers"
+              :class="{ valid: !$v.path.numberOfPassengers.$invalid, invalid: $v.path.numberOfPassengers.$invalid }"
+              v-model.number="$v.path.numberOfPassengers.$model"
+              required
+            />
+            <div v-if="$v.path.numberOfPassengers.$anyDirty && $v.path.numberOfPassengers.$invalid">
+              <small class="form-text text-danger" v-if="!$v.path.numberOfPassengers.required"> This field is required. </small>
+              <small class="form-text text-danger" v-if="!$v.path.numberOfPassengers.numeric"> This field should be a number. </small>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-control-label" for="path-departurePlace">Departure Place</label>
+            <input
+              type="text"
+              class="form-control"
+              name="departurePlace"
+              id="path-departurePlace"
+              data-cy="departurePlace"
+              :class="{ valid: !$v.path.departurePlace.$invalid, invalid: $v.path.departurePlace.$invalid }"
+              v-model="$v.path.departurePlace.$model"
+              required
+            />
+            <div v-if="$v.path.departurePlace.$anyDirty && $v.path.departurePlace.$invalid">
+              <small class="form-text text-danger" v-if="!$v.path.departurePlace.required"> This field is required. </small>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-control-label" for="path-arrivalPlace">Arrival Place</label>
+            <input
+              type="text"
+              class="form-control"
+              name="arrivalPlace"
+              id="path-arrivalPlace"
+              data-cy="arrivalPlace"
+              :class="{ valid: !$v.path.arrivalPlace.$invalid, invalid: $v.path.arrivalPlace.$invalid }"
+              v-model="$v.path.arrivalPlace.$model"
+              required
+            />
+            <div v-if="$v.path.arrivalPlace.$anyDirty && $v.path.arrivalPlace.$invalid">
+              <small class="form-text text-danger" v-if="!$v.path.arrivalPlace.required"> This field is required. </small>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-control-label" for="path-member">Member</label>
+            <select class="form-control" id="path-member" data-cy="member" name="member" v-model="path.member">
+              <option v-bind:value="null"></option>
+              <option
+                v-bind:value="path.member && memberOption.id === path.member.id ? path.member : memberOption"
+                v-for="memberOption in members"
+                :key="memberOption.id"
+              >
+                {{ memberOption.id }}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div>
+          <button type="button" id="cancel-save" class="btn btn-secondary" v-on:click="previousState()">
+            <font-awesome-icon icon="ban"></font-awesome-icon>&nbsp;<span>Cancel</span>
+          </button>
+          <button
+            type="submit"
+            id="save-entity"
+            data-cy="entityCreateSaveButton"
+            :disabled="$v.path.$invalid || isSaving"
+            class="btn btn-primary"
+          >
+            <font-awesome-icon icon="save"></font-awesome-icon>&nbsp;<span>Save</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</template>
+<script lang="ts" src="./path-update.component.ts"></script>
