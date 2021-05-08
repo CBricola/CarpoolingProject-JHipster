@@ -7,6 +7,12 @@ export default class Home extends Vue {
   @Inject('loginService')
   private loginService: () => LoginService;
 
+  // created(){
+  //   if(!this.authenticated){
+  //     this.openLogin();
+  //   }
+  // }
+
   public openLogin(): void {
     this.loginService().openLogin((<any>this).$root);
   }

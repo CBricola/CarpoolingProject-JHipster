@@ -3,8 +3,8 @@ import { shallowMount, createLocalVue, Wrapper } from '@vue/test-utils';
 import sinon, { SinonStubbedInstance } from 'sinon';
 
 import * as config from '@/shared/config/config';
-import PathComponent from '@/entities/path/path.vue';
-import PathClass from '@/entities/path/path.component';
+import PathComponent from '@/entities/path/path-bo.vue';
+import PathClass from '@/entities/path/path-bo.component';
 import PathService from '@/entities/path/path.service';
 
 const localVue = createLocalVue();

@@ -7,8 +7,8 @@ import dayjs from 'dayjs';
 import { DATE_TIME_LONG_FORMAT } from '@/shared/date/filters';
 
 import * as config from '@/shared/config/config';
-import PathUpdateComponent from '@/entities/path/path-update.vue';
-import PathClass from '@/entities/path/path-update.component';
+import PathUpdateComponent from '@/entities/path/path-update-bo.vue';
+import PathClass from '@/entities/path/path-update-bo.component';
 import PathService from '@/entities/path/path.service';
 
 import RegistrationService from '@/entities/registration/registration.service';

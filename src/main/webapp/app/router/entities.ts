@@ -3,23 +3,26 @@ import { Authority } from '@/shared/security/authority';
 // prettier-ignore
 
 // prettier-ignore
-const Member = () => import('@/entities/member/member.vue');
+const Member = () => import('@/bo/entities/member/member.vue');
 // prettier-ignore
-const MemberUpdate = () => import('@/entities/member/member-update.vue');
+const MemberUpdate = () => import('@/bo/entities/member/member-update.vue');
 // prettier-ignore
-const MemberDetails = () => import('@/entities/member/member-details.vue');
+const MemberDetails = () => import('@/bo/entities/member/member-details.vue');
 // prettier-ignore
-const Path = () => import('@/entities/path/path.vue');
+const Path = () => import('@/bo/entities/path/path.vue');
+const PathFo = () => import('@/fo/entities/path/path-fo.vue');
 // prettier-ignore
-const PathUpdate = () => import('@/entities/path/path-update.vue');
+const PathUpdate = () => import('@/bo/entities/path/path-update.vue');
+const PathUpdateFo = () => import('@/fo/entities/path/path-update-fo.vue');
 // prettier-ignore
-const PathDetails = () => import('@/entities/path/path-details.vue');
+const PathDetails = () => import('@/bo/entities/path/path-details.vue');
+const PathDetailsFo = () => import('@/fo/entities/path/path-details-fo.vue');
 // prettier-ignore
-const Registration = () => import('@/entities/registration/registration.vue');
+const Registration = () => import('@/bo/entities/registration/registration.vue');
 // prettier-ignore
-const RegistrationUpdate = () => import('@/entities/registration/registration-update.vue');
+const RegistrationUpdate = () => import('@/bo/entities/registration/registration-update.vue');
 // prettier-ignore
-const RegistrationDetails = () => import('@/entities/registration/registration-details.vue');
+const RegistrationDetails = () => import('@/bo/entities/registration/registration-details.vue');
 // jhipster-needle-add-entity-to-router-import - JHipster will import entities to the router here
 
 export default [
@@ -51,12 +54,24 @@ export default [
     path: '/path',
     name: 'Path',
     component: Path,
+    meta: { authorities: [Authority.ADMIN] },
+  },
+  {
+    path: '/trajet',
+    name: 'PathFo',
+    component: PathFo,
     meta: { authorities: [Authority.USER] },
   },
   {
     path: '/path/new',
     name: 'PathCreate',
     component: PathUpdate,
+    meta: { authorities: [Authority.ADMIN] },
+  },
+  {
+    path: '/trajet/nouveau',
+    name: 'PathCreateFo',
+    component: PathUpdateFo,
     meta: { authorities: [Authority.USER] },
   },
   {

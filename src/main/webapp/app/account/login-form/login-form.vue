@@ -3,30 +3,30 @@
     <div class="row justify-content-center">
       <div class="col-md-8">
         <b-alert show data-cy="loginError" variant="danger" v-if="authenticationError">
-          <strong>Failed to sign in!</strong> Please check your credentials and try again.
+          <strong>Erreur d'authentification</strong> Merci de vérifier votre identifiant et mot de passe.
         </b-alert>
       </div>
       <div class="col-md-8">
         <b-form role="form" v-on:submit.prevent="doLogin()">
-          <b-form-group label="Username" label-for="username">
+          <b-form-group label="Email Orange" label-for="username">
             <b-form-input
               id="username"
               type="text"
               name="username"
               autofocus
-              placeholder="Your username"
+              placeholder="Votre adresse email Orange"
               v-model="login"
               data-cy="username"
             >
             </b-form-input>
           </b-form-group>
-          <b-form-group label="Password" label-for="password">
+          <b-form-group label="Mot de passe" label-for="password">
             <b-form-input
               id="password"
               type="password"
               name="password"
               v-model.trim="name"
-              placeholder="Your password"
+              placeholder="Votre mot de passe"
               v-model="password"
               data-cy="password"
             >
@@ -36,21 +36,19 @@
             <span>Remember me</span>
           </b-form-checkbox>
           <div>
-            <b-button data-cy="submit" type="submit" variant="primary">Sign in</b-button>
+            <b-button data-cy="submit" type="submit" variant="primary">Me connecter</b-button>
           </div>
         </b-form>
         <p></p>
         <div>
           <b-alert show variant="warning">
-            <b-link :to="'/account/reset/request'" class="alert-link" data-cy="forgetYourPasswordSelector"
-              >Did you forget your password?</b-link
-            >
+            <b-link :to="'/account/reset/request'" class="alert-link" data-cy="forgetYourPasswordSelector">Mot de passe oublié ?</b-link>
           </b-alert>
         </div>
         <div>
           <b-alert show variant="warning">
-            <span>You don't have an account yet?</span>
-            <b-link :to="'/register'" class="alert-link">Register a new account</b-link>
+            <span>Vous n'avez pas encore de compte ?</span>
+            <b-link :to="'/register'" class="alert-link">Créer mon compte</b-link>
           </b-alert>
         </div>
       </div>

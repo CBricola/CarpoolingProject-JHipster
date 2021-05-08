@@ -4,8 +4,8 @@ import sinon, { SinonStubbedInstance } from 'sinon';
 import VueRouter from 'vue-router';
 
 import * as config from '@/shared/config/config';
-import PathDetailComponent from '@/entities/path/path-details.vue';
-import PathClass from '@/entities/path/path-details.component';
+import PathDetailComponent from '@/entities/path/path-details-bo.vue';
+import PathClass from '@/entities/path/path-details-bo.component';
 import PathService from '@/entities/path/path.service';
 import router from '@/router';
 
