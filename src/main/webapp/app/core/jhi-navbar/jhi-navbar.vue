@@ -138,7 +138,7 @@
 }
 
 .jh-navbar {
-  background-color: #353d47;
+  background-color: #000;
   padding: 0.2em 1em;
 }
 
@@ -196,7 +196,7 @@
 
 .navbar-title {
   display: inline-block;
-  vertical-align: middle;
+  vertical-align: bottom;
   color: white;
 }
 

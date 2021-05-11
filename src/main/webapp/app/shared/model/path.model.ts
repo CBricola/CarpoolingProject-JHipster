@@ -1,5 +1,6 @@
 import { IRegistration } from '@/shared/model/registration.model';
 import { IMember } from '@/shared/model/member.model';
+import {PathType} from "@/shared/model/pathType.model";
 
 export interface IPath {
   id?: number;
@@ -9,6 +10,7 @@ export interface IPath {
   arrivalPlace?: string;
   registrations?: IRegistration[] | null;
   member?: IMember | null;
+  type?: PathType;
 }
 
 export class Path implements IPath {

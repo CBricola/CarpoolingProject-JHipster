@@ -2,7 +2,7 @@
     <div class="row">
 
       <div class="col-12 col-lg-3 mb-3 mb-lg-0">
-        <div class="form-group">
+        <div class="form-group mb-0">
           <label for="type-exam"><strong>Type de trajet</strong></label>
           <select v-model="selectedPathType" class="custom-select mr-sm-2" id="type-exam">
             <option v-for="type in pathTypes"
@@ -14,7 +14,7 @@
       </div>
 
       <div class="col-12 col-lg-3 mb-3 mb-lg-0">
-        <div class="form-group">
+        <div class="form-group mb-0">
           <div v-if="selectedPathType == 'Aller'">
           <label for="departure-point"><strong>Ville de départ</strong></label>
 <!--          <input v-model="inputDeparture" @input="onChangeInputDeparture" type="text" class="form-control" id="place-exam" placeholder="Ville ou code postal">-->
@@ -40,7 +40,7 @@
 
 
       <div class="col-12 col-lg-3 mb-3 mb-lg-0">
-        <div class="form-group">
+        <div class="form-group mb-0">
           <label for="date-exam"><strong>Date du trajet</strong></label>
           <input v-model="inputDate" type="date" required class="form-control" id="date-exam">
         </div>
@@ -49,12 +49,11 @@
         </div>
       </div>
 
-<!--      <div class="col-12 col-lg-3 col align-self-end">-->
-<!--        <button type="submit" @click.prevent="submit"-->
-<!--                v-scroll-to="'#list-sessions'"-->
-<!--                class="btn btn-primary btn-block">Voir les sessions-->
-<!--        </button>-->
-<!--      </div>-->
+      <div class="col-12 col-lg-3 align-self-end">
+        <button type="submit" @click.prevent="submit"
+                class="btn-orange btn-secondary-orange btn-block">Voir les trajets
+        </button>
+      </div>
 
     </div>
 </template>

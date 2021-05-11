@@ -9,6 +9,7 @@ import Router from 'vue-router';
 
 const Home = () => import('@/core/home/home.vue');
 const Error = () => import('@/core/error/error.vue');
+const SearchPathsPage = () => import('@/fo/pages/search-paths-page/search-paths-page.vue');
 import account from '@/router/account';
 import admin from '@/router/admin';
 import entities from '@/router/entities';
@@ -24,6 +25,11 @@ export default new Router({
       path: '/',
       name: 'Home',
       component: Home
+    },
+    {
+      path: '/recherche',
+      name: 'SearchPathsPage',
+      component: SearchPathsPage
     },
     {
       path: '/forbidden',

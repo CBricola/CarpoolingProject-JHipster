@@ -32,24 +32,20 @@
             >
             </b-form-input>
           </b-form-group>
-          <b-form-checkbox id="rememberMe" name="rememberMe" v-model="rememberMe" checked>
-            <span>Remember me</span>
-          </b-form-checkbox>
-          <div>
-            <b-button data-cy="submit" type="submit" variant="primary">Me connecter</b-button>
+<!--          <b-form-checkbox id="rememberMe" name="rememberMe" v-model="rememberMe" checked>-->
+<!--            <span>Remember me</span>-->
+<!--          </b-form-checkbox>-->
+          <div class="text-center">
+            <b-button data-cy="submit" type="submit" variant="primary" class="btn-orange btn-primary-orange">Me connecter</b-button>
           </div>
         </b-form>
-        <p></p>
         <div>
-          <b-alert show variant="warning">
-            <b-link :to="'/account/reset/request'" class="alert-link" data-cy="forgetYourPasswordSelector">Mot de passe oublié ?</b-link>
-          </b-alert>
+            <b-link :to="'/account/reset/request'" class="btn-orange btn-info-orange d-block" data-cy="forgetYourPasswordSelector">Mot de passe oublié ?</b-link>
         </div>
+        <hr>
         <div>
-          <b-alert show variant="warning">
-            <span>Vous n'avez pas encore de compte ?</span>
-            <b-link :to="'/register'" class="alert-link">Créer mon compte</b-link>
-          </b-alert>
+            <div class="text-center mb-2">Vous n'avez pas encore de compte ?</div>
+            <b-link :to="'/register'" class="btn-orange btn-secondary-orange d-block">Créer mon compte</b-link>
         </div>
       </div>
     </div>

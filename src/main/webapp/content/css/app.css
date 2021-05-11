@@ -1,0 +1,100 @@
+/*********
+TITLES
+*********/
+
+h2.subtitle-orange {
+  font-size: 2.125rem;
+  line-height: 1.1764705882;
+  position: relative;
+  margin-bottom: .8125rem;
+  padding-bottom: .875rem;
+  font-weight: 700;
+}
+
+h2.subtitle-orange:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 1.875rem;
+  height: .375rem;
+  background-color: #ff7900;
+}
+
+
+/*********
+BUTTONS
+*********/
+
+.btn-orange {
+  border-radius: 0;
+  padding: .8125rem 2.8125rem;
+  font-weight: 700;
+  text-align: center;
+  cursor: pointer;
+}
+
+.btn-primary-orange {
+  border: 1px solid #000;
+  color: #fff;
+  background-color: #000;
+}
+
+.btn-primary-orange:hover {
+  background-color: #555555;
+}
+
+.btn-secondary-orange {
+  border: 1px solid #000;
+  color: #000;
+  background-color: #fff;
+}
+
+.btn-secondary-orange:hover {
+  border: 1px solid #000;
+  background-color: #000;
+  color: #fff;
+}
+
+.btn-info-orange {
+  border: 0;
+  color: #000;
+  background-color: #fff;
+}
+
+.btn-info-orange .icon {
+  color: #ff7900;
+}
+
+.btn-info-orange:hover {
+  text-decoration: underline;
+}
+
+/*********
+FORM
+*********/
+.form-group {
+  margin-bottom: 1.7rem;
+}
+
+.form-group input, select {
+  border-radius: 0 !important;
+  border-top: 0 !important;
+  border-left: 0 !important;
+  border-right: 0 !important;
+  border-bottom: 0.0625rem solid rgb(85, 85, 85) !important;
+}
+
+/*********
+BACKGROUNDS
+*********/
+.bg-light-grey {
+  background-color: #f4f4f4;
+}
+
+/*********
+TABLES
+*********/
+.table-striped tbody tr:nth-of-type(odd) {
+  background-color: #f4f4f4;
+}
