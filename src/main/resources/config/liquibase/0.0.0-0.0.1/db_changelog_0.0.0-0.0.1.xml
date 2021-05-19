@@ -1,0 +1,44 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                       xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+    <changeSet id="COM1" author="clement"  >
+		<comment>Modification base de données 0.0.0 vers 0.0.1</comment>
+	</changeSet>
+
+    <changeSet id="TAG1" author="clement"  >
+        <tagDatabase tag="R_0.0.0"/>
+    </changeSet>
+
+    <changeSet id="1" author="clement"  >
+        <sqlFile path="01_TAB_MEMBER.sql" relativeToChangelogFile="true"  />
+        <comment>fichier : 01_TAB_MEMBER.sql</comment>
+        <rollback>
+            <sqlFile path="R01_TAB_MEMBER.sql" relativeToChangelogFile="true" />
+        </rollback>
+    </changeSet>
+
+    <changeSet id="2" author="clement"  >
+        <sqlFile path="02_TAB_JHI_USER.sql" relativeToChangelogFile="true"  />
+        <comment>fichier : 02_TAB_JHI_USER.sql</comment>
+        <rollback>
+            <sqlFile path="R02_TAB_JHI_USER.sql" relativeToChangelogFile="true" />
+        </rollback>
+    </changeSet>
+    
+    <changeSet id="3" author="clement"  >
+        <sqlFile path="03_TAB_PATH.sql" relativeToChangelogFile="true"  />
+        <comment>fichier : "03_TAB_PATH.sql".sql</comment>
+        <rollback>
+            <sqlFile path="R03_TAB_PATH.sql" relativeToChangelogFile="true" />
+        </rollback>
+    </changeSet>
+
+	<changeSet id="COM2" author="clement"  >
+		<comment>Fin de modification base de données 0.0.0 vers 0.0.1</comment>
+	</changeSet>
+
+	<changeSet id="TAG2" author="clement"  >
+		<tagDatabase tag="0.0.1"/>
+	</changeSet>
+</databaseChangeLog>
