@@ -34,6 +34,18 @@ BUTTONS
   cursor: pointer;
 }
 
+.btn-orange:disabled {
+  border-radius: 0;
+  padding: .8125rem 2.8125rem;
+  font-weight: 700;
+  text-align: center;
+  cursor: pointer;
+  /*background-color: #ededed !important;*/
+  background-color: #fff !important;
+  color: #a3a3a3 !important;
+  border-color: #a3a3a3 !important;
+}
+
 .btn-primary-orange {
   border: 1px solid #000;
   color: #fff;

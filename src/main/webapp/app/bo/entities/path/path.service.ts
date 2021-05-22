@@ -2,7 +2,8 @@ import axios from 'axios';
 
 import buildPaginationQueryOpts from '@/shared/sort/sorts';
 
-import { IPath } from '@/shared/model/path.model';
+import {IPath} from '@/shared/model/path.model';
+import {PathType} from "@/shared/model/pathType.model";
 
 const baseApiUrl = 'api/paths';
 
@@ -24,6 +25,31 @@ export default class PathService {
     return new Promise<any>((resolve, reject) => {
       axios
         .get(baseApiUrl + `?${buildPaginationQueryOpts(paginationQuery)}`)
+        .then(res => {
+          resolve(res);
+        })
+        .catch(err => {
+          reject(err);
+        });
+    });
+  }
+
+  /**
+   * Appel à l'API permettant de récupérer une liste de trajets selon les critères saisis dans le formulaire de recherche
+   * @param pathType  type de trajet ("aller" ou "retour")
+   * @param departurePlace  ville de départ
+   * @param arrivalPlace  ville d'arrivée
+   * @param pathDate  date du trajet
+   */
+  public retrieveBySearchCriteria(pathType: PathType, departurePlace: string, arrivalPlace: string, pathDate: string): Promise<any> {
+
+    // construction des paramètres GET avec les critères de recherche
+    let searchParams = `?type=${pathType}&departure=${departurePlace}&arrival=${arrivalPlace}&date=${pathDate}`;
+
+    // appel à l'API "api/paths/search"
+    return new Promise<any>((resolve, reject) => {
+      axios
+        .get(baseApiUrl + "/search" + searchParams)
         .then(res => {
           resolve(res);
         })

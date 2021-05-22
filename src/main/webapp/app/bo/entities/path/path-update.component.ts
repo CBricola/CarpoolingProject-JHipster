@@ -4,10 +4,10 @@ import { required, numeric } from 'vuelidate/lib/validators';
 import dayjs from 'dayjs';
 import { DATE_TIME_LONG_FORMAT } from '@/shared/date/filters';
 
-import RegistrationService from '@/entities/registration/registration.service';
+import RegistrationService from '@/bo/entities/registration/registration.service';
 import { IRegistration } from '@/shared/model/registration.model';
 
-import MemberService from '@/entities/member/member.service';
+import MemberService from '@/bo/entities/member/member.service';
 import { IMember } from '@/shared/model/member.model';
 
 import { IPath, Path } from '@/shared/model/path.model';
