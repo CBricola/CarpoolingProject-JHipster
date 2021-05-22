@@ -4,8 +4,13 @@ import com.bricola.cocovoit.domain.Path;
 import com.bricola.cocovoit.domain.enumeration.PathType;
 import com.bricola.cocovoit.repository.PathRepository;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -84,15 +89,29 @@ public class PathService {
     }
 
     /**
+     * Retourne une liste de trajets correspondant aux critères de recherche
      *
      * @param pathType
      * @param departurePlace
      * @param arrivalPlace
-     * @param pathDate
+     * @param pathDateString date au format String
      * @return
      */
-    public List<Path> findAllBySearchCriteria(PathType pathType, String departurePlace, String arrivalPlace, String pathDate){
-        return null;
+    public List<Path> findAllBySearchCriteria(String pathType, String departurePlace, String arrivalPlace, String pathDateString) throws ParseException {
+
+        // Parser au format "Instant" la date du trajet
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        Instant pathDateInstant = format.parse(pathDateString).toInstant();
+
+        // Recherche selon le type de trajet ("Aller" ou "Retour")
+        List<Path> paths = null;
+        if (pathType.equals(PathType.ALLER.getLabel())) {
+            paths = pathRepository.findAllByDeparturePlaceLikeAndDateIsGreaterThanEqual(departurePlace, pathDateInstant);
+        } else {
+            paths = pathRepository.findAllByArrivalPlaceLikeAndDateIsGreaterThanEqual(arrivalPlace, pathDateInstant);
+        }
+
+        return paths;
     }
 
     /**

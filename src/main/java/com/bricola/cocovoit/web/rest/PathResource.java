@@ -8,6 +8,7 @@ import com.bricola.cocovoit.web.rest.errors.BadRequestAlertException;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.text.ParseException;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -163,10 +164,10 @@ public class PathResource {
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of paths in body.
      */
     @GetMapping("/paths/search")
-    public ResponseEntity<List<Path>> getAllPathsBySearchCriteria(@RequestParam("type") PathType pathType,
+    public ResponseEntity<List<Path>> getAllPathsBySearchCriteria(@RequestParam("type") String pathType,
                                                                   @RequestParam("departure") String departurePlace,
                                                                   @RequestParam("arrival") String arrivalPlace,
-                                                                  @RequestParam("date") String pathDate) {
+                                                                  @RequestParam("date") String pathDate) throws ParseException {
 
         log.debug("Requete GET pour obtenir une liste de trajets par critères de recherche");
         log.debug(">>>>> pathType : " + pathType);
