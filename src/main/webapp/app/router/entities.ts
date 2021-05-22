@@ -14,11 +14,15 @@ const PathFo = () => import('@/fo/entities/path/path-fo.vue');
 // prettier-ignore
 const PathUpdate = () => import('@/bo/entities/path/path-update.vue');
 const PathUpdateFo = () => import('@/fo/entities/path/path-update-fo.vue');
+const PathUser = () => import('@/bo/entities/path/path-user.vue');
 // prettier-ignore
 const PathDetails = () => import('@/bo/entities/path/path-details.vue');
 const PathDetailsFo = () => import('@/fo/entities/path/path-details-fo.vue');
+
 // prettier-ignore
 const Registration = () => import('@/bo/entities/registration/registration.vue');
+const RegistrationUser = () => import('@/bo/entities/registration/registration-user.vue');
+
 // prettier-ignore
 const RegistrationUpdate = () => import('@/bo/entities/registration/registration-update.vue');
 // prettier-ignore
@@ -75,6 +79,12 @@ export default [
     meta: { authorities: [Authority.USER] },
   },
   {
+    path: '/trajet/mes_trajets',
+    name: 'PathUser',
+    component: PathUser,
+    meta: { authorities: [Authority.USER] },
+  },
+  {
     path: '/path/:pathId/edit',
     name: 'PathEdit',
     component: PathUpdate,
@@ -90,6 +100,12 @@ export default [
     path: '/registration',
     name: 'Registration',
     component: Registration,
+    meta: { authorities: [Authority.USER] },
+  },
+  {
+    path: '/reservations/mes_reservations',
+    name: 'RegistrationUser',
+    component: RegistrationUser,
     meta: { authorities: [Authority.USER] },
   },
   {

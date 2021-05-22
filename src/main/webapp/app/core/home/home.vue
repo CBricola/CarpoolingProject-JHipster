@@ -19,7 +19,13 @@
               </div>
 
               <div class="col-6">
-                <div class="btn-orange btn-secondary-orange btn-block">Gérer mes trajets</div>
+                <router-link :to="{ name: 'PathUser' }" custom v-slot="{ navigate }">
+                  <button @click="navigate"
+                          class="btn-orange btn-secondary-orange btn-block">
+                    <!--                    <font-awesome-icon icon="plus"></font-awesome-icon>-->
+                    <span>Gérer mes trajets</span>
+                  </button>
+                </router-link>
               </div>
             </div>
           </div>
@@ -38,9 +44,14 @@
                 </router-link>
               </div>
 
-
               <div class="col-6">
-                <div class="btn-orange btn-secondary-orange btn-block">Gérer mes réservations</div>
+                <router-link :to="{ name: 'RegistrationUser' }" custom v-slot="{ navigate }">
+                  <button @click="navigate"
+                          class="btn-orange btn-secondary-orange btn-block">
+                    <!--                    <font-awesome-icon icon="plus"></font-awesome-icon>-->
+                    <span> Gérer mes réservations </span>
+                  </button>
+                </router-link>
               </div>
             </div>
           </div>
