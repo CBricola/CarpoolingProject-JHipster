@@ -2,8 +2,9 @@ import {Component, Inject, Vue} from 'vue-property-decorator';
 import {PathType} from "@/shared/model/pathType.model";
 import {numeric, required, minLength, maxLength, minValue, maxValue, requiredIf} from 'vuelidate/lib/validators';
 import PathService from "@/bo/entities/path/path.service";
+import {IPath} from "@/shared/model/path.model";
 
-// Contrainte de la validation
+// Contraintes de la validation
 // La date saisie dans le champ 'Date du trajet' doit être supérieure ou égale à la date du jour
 const mustBeAtLeastToday = value => new Date(value).setHours(0, 0, 0, 0) >= new Date().setHours(0, 0, 0, 0);
 
@@ -28,7 +29,7 @@ const mustBeAtLeastToday = value => new Date(value).setHours(0, 0, 0, 0) >= new 
 export default class SearchPathsForm extends Vue {
 
   // Injection du service lié aux trajets
-  // pour permettre la récupération des trajets liés aux critères de recherche
+  // pour permettre la récupération des trajets selon les critères de recherche
   @Inject('pathService')
   private pathService: () => PathService;
 
@@ -42,7 +43,9 @@ export default class SearchPathsForm extends Vue {
   public inputArrival: string = null;
   public inputDate: string = new Date().toISOString().slice(0, 10); // la valeur par défaut est la date du jour
 
-  // trajets reçus
+  // trajets correspondants aux critères de recherche
+  public paths: IPath[] = []
+
 
   /**
    * A la validation du formulaire (bouton 'Voir les trajets') on lance la recherche de trajet
@@ -52,8 +55,8 @@ export default class SearchPathsForm extends Vue {
       .retrieveBySearchCriteria(this.inputPathType, this.inputDeparture, this.inputArrival, this.inputDate)
       .then(
         res => {
-          this.examSessions = res.data;
-          this.emitExamSessions(this.examSessions);
+          this.paths = res.data;
+          this.$emit('searchPaths', this.paths);
         },
         err => {
           // this.error = true;

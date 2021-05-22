@@ -10,6 +10,10 @@ import { IPath } from '@/shared/model/path.model';
   mixins: [Vue2Filters.mixin],
 })
 export default class SearchPathsPage extends Vue {
+
+  // Trajets reçus du formulaire de recherche
+  public paths: IPath[] = []
+
   // @Inject('pathService') private pathService: () => PathService;
   // private removeId: number = null;
   // public itemsPerPage = 20;

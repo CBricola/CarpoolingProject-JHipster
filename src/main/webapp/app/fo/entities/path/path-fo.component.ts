@@ -21,7 +21,6 @@ export default class PathFo extends Vue {
   public totalItems = 0;
 
   @Prop() public paths: IPath[] = [];
-  // public paths: IPath[] = [];
 
   public isFetching = false;
 
