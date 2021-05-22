@@ -1,6 +1,6 @@
 import { mixins } from 'vue-class-component';
 
-import { Component, Vue, Inject } from 'vue-property-decorator';
+import {Component, Vue, Inject, Prop} from 'vue-property-decorator';
 import Vue2Filters from 'vue2-filters';
 import { IPath } from '@/shared/model/path.model';
 
@@ -20,7 +20,8 @@ export default class PathFo extends Vue {
   public reverse = false;
   public totalItems = 0;
 
-  public paths: IPath[] = [];
+  @Prop() public paths: IPath[] = [];
+  // public paths: IPath[] = [];
 
   public isFetching = false;
 

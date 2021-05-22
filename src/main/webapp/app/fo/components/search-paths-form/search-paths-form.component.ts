@@ -42,6 +42,8 @@ export default class SearchPathsForm extends Vue {
   public inputArrival: string = null;
   public inputDate: string = new Date().toISOString().slice(0, 10); // la valeur par défaut est la date du jour
 
+  // trajets reçus
+
   /**
    * A la validation du formulaire (bouton 'Voir les trajets') on lance la recherche de trajet
    */
@@ -50,9 +52,8 @@ export default class SearchPathsForm extends Vue {
       .retrieveBySearchCriteria(this.inputPathType, this.inputDeparture, this.inputArrival, this.inputDate)
       .then(
         res => {
-          // this.error = false;
-          // this.examSessions = res.data;
-          // this.emitExamSessions(this.examSessions);
+          this.examSessions = res.data;
+          this.emitExamSessions(this.examSessions);
         },
         err => {
           // this.error = true;

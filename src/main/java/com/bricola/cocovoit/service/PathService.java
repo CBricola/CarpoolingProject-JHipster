@@ -99,7 +99,7 @@ public class PathService {
      */
     public List<Path> findAllBySearchCriteria(String pathType, String departurePlace, String arrivalPlace, String pathDateString) throws ParseException {
 
-        // Parser au format "Instant" la date du trajet
+        // Convertir la date du trajet au format "Instant"
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         Instant pathDateInstant = format.parse(pathDateString).toInstant();
 
