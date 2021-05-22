@@ -1,9 +1,11 @@
 package com.bricola.cocovoit.web.rest;
 
 import com.bricola.cocovoit.domain.Path;
+import com.bricola.cocovoit.domain.enumeration.PathType;
 import com.bricola.cocovoit.repository.PathRepository;
 import com.bricola.cocovoit.service.PathService;
 import com.bricola.cocovoit.web.rest.errors.BadRequestAlertException;
+
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
@@ -11,6 +13,7 @@ import java.util.Objects;
 import java.util.Optional;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -71,7 +74,7 @@ public class PathResource {
     /**
      * {@code PUT  /paths/:id} : Updates an existing path.
      *
-     * @param id the id of the path to save.
+     * @param id   the id of the path to save.
      * @param path the path to update.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated path,
      * or with status {@code 400 (Bad Request)} if the path is not valid,
@@ -103,7 +106,7 @@ public class PathResource {
     /**
      * {@code PATCH  /paths/:id} : Partial updates given fields of an existing path, field will ignore if it is null
      *
-     * @param id the id of the path to save.
+     * @param id   the id of the path to save.
      * @param path the path to update.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated path,
      * or with status {@code 400 (Bad Request)} if the path is not valid,
@@ -148,6 +151,33 @@ public class PathResource {
         Page<Path> page = pathService.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
+    }
+
+    /**
+     * {@code GET  /paths/search} : Retourne une liste de trajets correspondant aux critères de recherche
+     *
+     * @param pathType       type de trajet ("aller" ou "retour")
+     * @param departurePlace ville de départ
+     * @param arrivalPlace   ville d'arrivée
+     * @param pathDate       date du trajet
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of paths in body.
+     */
+    @GetMapping("/paths/search")
+    public ResponseEntity<List<Path>> getAllPathsBySearchCriteria(@RequestParam("type") PathType pathType,
+                                                                  @RequestParam("departure") String departurePlace,
+                                                                  @RequestParam("arrival") String arrivalPlace,
+                                                                  @RequestParam("date") String pathDate) {
+
+        log.debug("Requete GET pour obtenir une liste de trajets par critères de recherche");
+        log.debug(">>>>> pathType : " + pathType);
+        log.debug(">>>>> pathDate : " + pathDate);
+//        Page<Path> page = pathService.findAll(pageable);
+        List<Path> paths = pathService.findAllBySearchCriteria(pathType, departurePlace, arrivalPlace, pathDate);
+
+//        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
+
+        return new ResponseEntity<>(paths, HttpStatus.OK);
+//        return ResponseEntity.ok().headers(headers).body(paths);
     }
 
     /**

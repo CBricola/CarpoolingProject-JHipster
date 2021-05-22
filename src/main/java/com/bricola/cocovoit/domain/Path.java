@@ -1,5 +1,6 @@
 package com.bricola.cocovoit.domain;
 
+import com.bricola.cocovoit.domain.enumeration.PathType;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
 import java.time.Instant;
@@ -21,6 +22,10 @@ public class Path implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
     @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
+
+    @Enumerated(EnumType.ORDINAL)
+    @Column(name = "type")
+    private PathType type;
 
     @NotNull
     @Column(name = "date", nullable = false)
@@ -71,6 +76,14 @@ public class Path implements Serializable {
 
     public void setDate(Instant date) {
         this.date = date;
+    }
+
+    public PathType getType() {
+        return type;
+    }
+
+    public void setType(PathType type) {
+        this.type = type;
     }
 
     public Integer getNumberOfPassengers() {
@@ -180,6 +193,7 @@ public class Path implements Serializable {
     public String toString() {
         return "Path{" +
             "id=" + getId() +
+            ", type='" + getType() + "'" +
             ", date='" + getDate() + "'" +
             ", numberOfPassengers=" + getNumberOfPassengers() +
             ", departurePlace='" + getDeparturePlace() + "'" +

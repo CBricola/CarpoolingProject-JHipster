@@ -1,7 +1,10 @@
 package com.bricola.cocovoit.service;
 
 import com.bricola.cocovoit.domain.Path;
+import com.bricola.cocovoit.domain.enumeration.PathType;
 import com.bricola.cocovoit.repository.PathRepository;
+
+import java.util.List;
 import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -78,6 +81,18 @@ public class PathService {
     public Page<Path> findAll(Pageable pageable) {
         log.debug("Request to get all Paths");
         return pathRepository.findAll(pageable);
+    }
+
+    /**
+     *
+     * @param pathType
+     * @param departurePlace
+     * @param arrivalPlace
+     * @param pathDate
+     * @return
+     */
+    public List<Path> findAllBySearchCriteria(PathType pathType, String departurePlace, String arrivalPlace, String pathDate){
+        return null;
     }
 
     /**
