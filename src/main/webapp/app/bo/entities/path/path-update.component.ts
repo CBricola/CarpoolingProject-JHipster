@@ -7,8 +7,8 @@ import { DATE_TIME_LONG_FORMAT } from '@/shared/date/filters';
 import RegistrationService from '@/bo/entities/registration/registration.service';
 import { IRegistration } from '@/shared/model/registration.model';
 
-import MemberService from '@/bo/entities/member/member.service';
-import { IMember } from '@/shared/model/member.model';
+// import MemberService from '@/bo/entities/member/member.service';
+// import { IMember } from '@/shared/model/member.model';
 
 import { IPath, Path } from '@/shared/model/path.model';
 import PathService from './path.service';
@@ -42,9 +42,9 @@ export default class PathUpdate extends Vue {
 
   public registrations: IRegistration[] = [];
 
-  @Inject('memberService') private memberService: () => MemberService;
+  // @Inject('memberService') private memberService: () => MemberService;
 
-  public members: IMember[] = [];
+  // public members: IMember[] = [];
   public isSaving = false;
   public currentLanguage = '';
   public pathType: string = '';
@@ -155,10 +155,10 @@ export default class PathUpdate extends Vue {
       .then(res => {
         this.registrations = res.data;
       });
-    this.memberService()
-      .retrieve()
-      .then(res => {
-        this.members = res.data;
-      });
+    // this.memberService()
+    //   .retrieve()
+    //   .then(res => {
+    //     this.members = res.data;
+    //   });
   }
 }

@@ -30,7 +30,6 @@ import '../content/css/app.css';
 import UserOAuth2Service from '@/bo/entities/user/user.oauth2.service';
 /* tslint:disable */
 
-import MemberService from '@/bo/entities/member/member.service';
 import PathService from '@/bo/entities/path/path.service';
 import RegistrationService from '@/bo/entities/registration/registration.service';
 // jhipster-needle-add-entity-service-to-main-import - JHipster will import entities services here
@@ -92,7 +91,6 @@ new Vue({
     metricsService: () => new MetricsService(),
 
     userOAuth2Service: () => new UserOAuth2Service(),
-    memberService: () => new MemberService(),
     pathService: () => new PathService(),
     registrationService: () => new RegistrationService(),
     // jhipster-needle-add-entity-service-to-main - JHipster will import entities services here

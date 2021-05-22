@@ -3,12 +3,6 @@ import { Authority } from '@/shared/security/authority';
 // prettier-ignore
 
 // prettier-ignore
-const Member = () => import('@/bo/entities/member/member.vue');
-// prettier-ignore
-const MemberUpdate = () => import('@/bo/entities/member/member-update.vue');
-// prettier-ignore
-const MemberDetails = () => import('@/bo/entities/member/member-details.vue');
-// prettier-ignore
 const Path = () => import('@/bo/entities/path/path.vue');
 const PathFo = () => import('@/fo/entities/path/path-fo.vue');
 // prettier-ignore
@@ -30,30 +24,6 @@ const RegistrationDetails = () => import('@/bo/entities/registration/registratio
 // jhipster-needle-add-entity-to-router-import - JHipster will import entities to the router here
 
 export default [
-  {
-    path: '/member',
-    name: 'Member',
-    component: Member,
-    meta: { authorities: [Authority.USER] },
-  },
-  {
-    path: '/member/new',
-    name: 'MemberCreate',
-    component: MemberUpdate,
-    meta: { authorities: [Authority.USER] },
-  },
-  {
-    path: '/member/:memberId/edit',
-    name: 'MemberEdit',
-    component: MemberUpdate,
-    meta: { authorities: [Authority.USER] },
-  },
-  {
-    path: '/member/:memberId/view',
-    name: 'MemberView',
-    component: MemberDetails,
-    meta: { authorities: [Authority.USER] },
-  },
   {
     path: '/path',
     name: 'Path',
