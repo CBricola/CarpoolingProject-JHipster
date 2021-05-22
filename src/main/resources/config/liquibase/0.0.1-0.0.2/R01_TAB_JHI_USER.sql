@@ -1,0 +1,1 @@
+ALTER TABLE jhi_user MODIFY phone BIGINT(10);
