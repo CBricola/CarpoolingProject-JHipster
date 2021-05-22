@@ -20,10 +20,10 @@ public class Registration implements Serializable {
 
     @ManyToOne
     @JsonIgnoreProperties(value = { "paths", "registrations" }, allowSetters = true)
-    private Member member;
+    private User user;
 
     @ManyToOne
-    @JsonIgnoreProperties(value = { "registrations", "member" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "registrations", "user" }, allowSetters = true)
     private Path path;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
@@ -40,17 +40,17 @@ public class Registration implements Serializable {
         return this;
     }
 
-    public Member getMember() {
-        return this.member;
+    public User getUser() {
+        return this.user;
     }
 
-    public Registration member(Member member) {
-        this.setMember(member);
+    public Registration user(User user) {
+        this.setUser(user);
         return this;
     }
 
-    public void setMember(Member member) {
-        this.member = member;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Path getPath() {

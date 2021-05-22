@@ -40,7 +40,7 @@
               <span>Arrival Place</span>
               <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'arrivalPlace'"></jhi-sort-indicator>
             </th>
-            <th scope="row" v-on:click="changeOrder('member.id')">
+            <th scope="row" v-on:click="changeOrder('user.id')">
               <span>Member</span>
               <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'member.id'"></jhi-sort-indicator>
             </th>

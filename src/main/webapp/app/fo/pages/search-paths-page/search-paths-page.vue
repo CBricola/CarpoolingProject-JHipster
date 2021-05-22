@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-
+    <h2 class="subtitle-orange mb-5">Rechercher un trajet</h2>
     <div class="bg-light-grey p-4">
     <search-paths-form></search-paths-form>
     </div>

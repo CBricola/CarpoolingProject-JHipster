@@ -44,12 +44,12 @@ public class Path implements Serializable {
     private String arrivalPlace;
 
     @OneToMany(mappedBy = "path")
-    @JsonIgnoreProperties(value = { "member", "path" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "user", "path" }, allowSetters = true)
     private Set<Registration> registrations = new HashSet<>();
 
     @ManyToOne
     @JsonIgnoreProperties(value = { "paths", "registrations" }, allowSetters = true)
-    private Member member;
+    private User user;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
@@ -156,17 +156,17 @@ public class Path implements Serializable {
         this.registrations = registrations;
     }
 
-    public Member getMember() {
-        return this.member;
+    public User getUser() {
+        return this.user;
     }
 
-    public Path member(Member member) {
-        this.setMember(member);
+    public Path user(User user) {
+        this.setUser(user);
         return this;
     }
 
-    public void setMember(Member member) {
-        this.member = member;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here

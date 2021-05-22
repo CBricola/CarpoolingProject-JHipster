@@ -28,14 +28,14 @@
           <dd>
             <span>{{ path.arrivalPlace }}</span>
           </dd>
-          <dt>
-            <span>Member</span>
-          </dt>
-          <dd>
-            <div v-if="path.member">
-              <router-link :to="{ name: 'MemberView', params: { memberId: path.member.id } }">{{ path.member.id }}</router-link>
-            </div>
-          </dd>
+<!--          <dt>-->
+<!--            <span>User</span>-->
+<!--          </dt>-->
+<!--          <dd>-->
+<!--            <div v-if="path.user">-->
+<!--              <router-link :to="{ name: 'MemberView', params: { memberId: path.member.id } }">{{ path.member.id }}</router-link>-->
+<!--            </div>-->
+<!--          </dd>-->
         </dl>
         <button type="submit" v-on:click.prevent="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
           <font-awesome-icon icon="arrow-left"></font-awesome-icon>&nbsp;<span> Back</span>
