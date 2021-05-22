@@ -6,7 +6,7 @@
       <search-paths-form></search-paths-form>
     </div>
 
-    <path-fo :paths=""></path-fo>
+    <path-fo></path-fo>
 
   </div>
 </template>
