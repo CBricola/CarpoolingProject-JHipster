@@ -45,16 +45,15 @@ export default class PathUser extends Vue {
   public retrieveAllPaths(): void {
     this.isFetching = true;
 
-    const paginationQuery = {
-      page: this.page - 1,
-      size: this.itemsPerPage,
-      sort: this.sort(),
-    };
+    // const paginationQuery = {
+    //   page: this.page - 1,
+    //   size: this.itemsPerPage,
+    //   sort: this.sort(),
+    // };
 
-    const userId = this.userId;
     this.pathService()
     // Rajouter Id
-      .retrievePathsByUserId(userId)
+      .retrievePathsByUserId(this.userId)
       .then(
         res => {
           this.paths = res.data;
@@ -83,7 +82,7 @@ export default class PathUser extends Vue {
     this.pathService()
       .delete(this.removeId)
       .then(() => {
-        const message = 'A Path is deleted with identifier ' + this.removeId;
+        const message = "Le trajet a été supprimé";
         this.$bvToast.toast(message.toString(), {
           toaster: 'b-toaster-top-center',
           title: 'Info',

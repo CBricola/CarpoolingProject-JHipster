@@ -3,6 +3,7 @@ package com.bricola.cocovoit.service;
 import com.bricola.cocovoit.domain.Path;
 import com.bricola.cocovoit.domain.enumeration.PathType;
 import com.bricola.cocovoit.repository.PathRepository;
+import com.bricola.cocovoit.repository.RegistrationRepository;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -28,9 +29,12 @@ public class PathService {
     private final Logger log = LoggerFactory.getLogger(PathService.class);
 
     private final PathRepository pathRepository;
+    
+    private final RegistrationRepository registrationRepository;
 
-    public PathService(PathRepository pathRepository) {
+    public PathService(PathRepository pathRepository, RegistrationRepository registrationRepository) {
         this.pathRepository = pathRepository;
+        this.registrationRepository = registrationRepository;
     }
 
     /**
@@ -147,6 +151,9 @@ public class PathService {
      * @param id the id of the entity.
      */
     public void delete(Long id) {
+    	log.debug("Request to delete registration when id : {}", id);
+    	registrationRepository.deleteByPathId(id);
+    	
         log.debug("Request to delete Path : {}", id);
         pathRepository.deleteById(id);
     }

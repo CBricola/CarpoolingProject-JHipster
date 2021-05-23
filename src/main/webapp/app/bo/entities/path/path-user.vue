@@ -72,15 +72,15 @@
                 <router-link :to="{ name: 'PathView', params: { pathId: path.id } }" custom v-slot="{ navigate }">
                   <button @click="navigate" class="btn btn-info btn-sm details" data-cy="entityDetailsButton">
                     <font-awesome-icon icon="eye"></font-awesome-icon>
-                    <span class="d-none d-md-inline">View</span>
+                    <span class="d-none d-md-inline">Voir les réservations</span>
                   </button>
                 </router-link>
-                <router-link :to="{ name: 'PathEdit', params: { pathId: path.id } }" custom v-slot="{ navigate }">
+                <!-- <router-link :to="{ name: 'PathEdit', params: { pathId: path.id } }" custom v-slot="{ navigate }">
                   <button @click="navigate" class="btn btn-primary btn-sm edit" data-cy="entityEditButton">
                     <font-awesome-icon icon="pencil-alt"></font-awesome-icon>
                     <span class="d-none d-md-inline">Edit</span>
                   </button>
-                </router-link>
+                </router-link> -->
                 <b-button
                   v-on:click="prepareRemove(path)"
                   variant="danger"
@@ -89,7 +89,7 @@
                   v-b-modal.removeEntity
                 >
                   <font-awesome-icon icon="times"></font-awesome-icon>
-                  <span class="d-none d-md-inline">Effacer</span>
+                  <span class="d-none d-md-inline">Effacer le trajet</span>
                 </b-button>
               </div>
             </td>
@@ -117,14 +117,14 @@
         </button>
       </div>
     </b-modal>
-    <div v-show="paths && paths.length > 0">
+    <!-- <div v-show="paths && paths.length > 0">
       <div class="row justify-content-center">
         <jhi-item-count :page="page" :total="queryCount" :itemsPerPage="itemsPerPage"></jhi-item-count>
       </div>
       <div class="row justify-content-center">
         <b-pagination size="md" :total-rows="totalItems" v-model="page" :per-page="itemsPerPage" :change="loadPage(page)"></b-pagination>
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 
