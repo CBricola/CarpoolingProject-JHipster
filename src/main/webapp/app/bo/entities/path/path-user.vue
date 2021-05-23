@@ -28,36 +28,36 @@
       <table class="table table-striped" aria-describedby="paths">
         <thead>
           <tr>
-            <th scope="row" v-on:click="changeOrder('id')">
+            <!-- <th scope="row" v-on:click="changeOrder('id')">
               <span>ID</span> <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'id'"></jhi-sort-indicator>
-            </th>
+            </th> -->
             <th scope="row" v-on:click="changeOrder('date')">
               <span>Date</span> <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'date'"></jhi-sort-indicator>
             </th>
             <th scope="row" v-on:click="changeOrder('numberOfPassengers')">
-              <span>Number Of Passengers</span>
+              <span>Nombre de passager</span>
               <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'numberOfPassengers'"></jhi-sort-indicator>
             </th>
             <th scope="row" v-on:click="changeOrder('departurePlace')">
-              <span>Departure Place</span>
+              <span>Lieu de départ</span>
               <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'departurePlace'"></jhi-sort-indicator>
             </th>
             <th scope="row" v-on:click="changeOrder('arrivalPlace')">
-              <span>Arrival Place</span>
+              <span>Lieu d'arrivée</span>
               <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'arrivalPlace'"></jhi-sort-indicator>
             </th>
-            <th scope="row" v-on:click="changeOrder('member.id')">
-              <span>Member</span>
-              <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'member.id'"></jhi-sort-indicator>
+            <th scope="row" v-on:click="changeOrder('comment')">
+              <span>Commentaire</span>
+              <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'comment'"></jhi-sort-indicator>
             </th>
             <th scope="row"></th>
           </tr>
         </thead>
         <tbody>
           <tr v-for="path in paths" :key="path.id" data-cy="entityTable">
-            <td>
+            <!-- <td>
               <router-link :to="{ name: 'PathView', params: { pathId: path.id } }">{{ path.id }}</router-link>
-            </td>
+            </td> -->
             <td>{{ path.date | formatDate }}</td>
             <td>{{ path.numberOfPassengers }}</td>
             <td>{{ path.departurePlace }}</td>
@@ -89,7 +89,7 @@
                   v-b-modal.removeEntity
                 >
                   <font-awesome-icon icon="times"></font-awesome-icon>
-                  <span class="d-none d-md-inline">Delete</span>
+                  <span class="d-none d-md-inline">Effacer</span>
                 </b-button>
               </div>
             </td>

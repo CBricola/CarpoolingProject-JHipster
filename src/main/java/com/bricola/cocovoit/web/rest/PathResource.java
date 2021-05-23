@@ -170,14 +170,21 @@ public class PathResource {
                                                                   @RequestParam("date") String pathDate) throws ParseException {
 
         log.debug("Requete GET pour obtenir une liste de trajets par critères de recherche");
+        log.debug(">>>>> pathType : " + pathType);
+        log.debug(">>>>> pathDate : " + pathDate);
+//        Page<Path> page = pathService.findAll(pageable);
         List<Path> paths = pathService.findAllBySearchCriteria(pathType, departurePlace, arrivalPlace, pathDate);
-        return new ResponseEntity<>(paths, HttpStatus.OK);
-    }
 
-    @PostMapping("/paths/search")
+//        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
+
+        return new ResponseEntity<>(paths, HttpStatus.OK);
+//        return ResponseEntity.ok().headers(headers).body(paths);
+    }
+    
+    @PostMapping("/paths/search/{userId}")
     public ResponseEntity<List<Path>> getAllPathsByUserId(@PathVariable Long userId) throws ParseException {
 
-        log.debug("Requete GET pour obtenir une liste de trajets de l'utilisateur courant");
+        log.debug("Requete Post pour obtenir une liste de trajets de l'utilisateur courant");
         log.debug(">>>>> userId : " + userId);
 
 //        Page<Path> page = pathService.findAll(pageable);
