@@ -1,20 +1,28 @@
 <template>
   <div>
-    <h2 class="subtitle-orange mb-5">Gérer mes trajets</h2>
+    <router-link :to="{ name: 'Home' }" custom v-slot="{ navigate }">
+        <button @click="navigate" class="btn-return-orange mb-3">
+          <font-awesome-icon icon="long-arrow-alt-left"></font-awesome-icon><span > Retour</span>
+        </button>
+    </router-link>
+    <h2 class="subtitle-orange mb-5">
+       Gérer mes trajets
+    </h2>
+   
       <div class="d-flex justify-content-end">
         <button class="btn btn-info mr-2" v-on:click="handleSyncList" :disabled="isFetching">
-          <font-awesome-icon icon="sync" :spin="isFetching"></font-awesome-icon> <span>Refresh List</span>
+          <font-awesome-icon icon="sync" :spin="isFetching"></font-awesome-icon> <span>Rafraîchir la liste</span>
         </button>
         <router-link :to="{ name: 'PathCreate' }" custom v-slot="{ navigate }">
           <button @click="navigate" id="jh-create-entity" data-cy="entityCreateButton" class="btn btn-primary jh-create-entity create-path">
             <font-awesome-icon icon="plus"></font-awesome-icon>
-            <span> Create a new Path </span>
+            <span> Créer un nouveau trajet </span>
           </button>
         </router-link>
       </div>
     <br />
     <div class="alert alert-warning" v-if="!isFetching && paths && paths.length === 0">
-      <span>No paths found</span>
+      <span>Aucun trajet trouvé</span>
     </div>
     <div class="table-responsive" v-if="paths && paths.length > 0">
       <table class="table table-striped" aria-describedby="paths">

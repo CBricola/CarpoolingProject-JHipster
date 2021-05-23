@@ -1,9 +1,14 @@
 <template>
   <div>
+    <router-link :to="{ name: 'Home' }" custom v-slot="{ navigate }">
+        <button @click="navigate" class="btn-return-orange mb-3">
+          <font-awesome-icon icon="long-arrow-alt-left"></font-awesome-icon><span > Retour</span>
+        </button>
+    </router-link>
     <h2 class="subtitle-orange mb-5">Gérer mes réservations</h2>
       <div class="d-flex justify-content-end">
         <button class="btn btn-info mr-2" v-on:click="handleSyncList" :disabled="isFetching">
-          <font-awesome-icon icon="sync" :spin="isFetching"></font-awesome-icon> <span>Refresh List</span>
+          <font-awesome-icon icon="sync" :spin="isFetching"></font-awesome-icon> <span>Rafraîchir la liste</span>
         </button>
         <router-link :to="{ name: 'RegistrationCreate' }" custom v-slot="{ navigate }">
           <button
@@ -13,13 +18,13 @@
             class="btn btn-primary jh-create-entity create-registration"
           >
             <font-awesome-icon icon="plus"></font-awesome-icon>
-            <span> Create a new Registration </span>
+            <span> Chercher un trajet </span>
           </button>
         </router-link>
       </div>
     <br />
     <div class="alert alert-warning" v-if="!isFetching && registrations && registrations.length === 0">
-      <span>No registrations found</span>
+      <span>Aucun enregistement trouvé</span>
     </div>
     <div class="table-responsive" v-if="registrations && registrations.length > 0">
       <table class="table table-striped" aria-describedby="registrations">

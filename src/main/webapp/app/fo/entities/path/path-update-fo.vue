@@ -1,5 +1,10 @@
 <template>
   <div class="container">
+    <router-link :to="{ name: 'Home' }" custom v-slot="{ navigate }">
+        <button @click="navigate" class="btn-return-orange mb-3">
+          <font-awesome-icon icon="long-arrow-alt-left"></font-awesome-icon><span > Retour</span>
+        </button>
+    </router-link>
     <h2 class="subtitle-orange mb-5">Créer un trajet</h2>
     <div class="row justify-content-center">
       <div class="col-12">
