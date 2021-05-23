@@ -10,10 +10,11 @@
     </h2>
    
     <div class="bg-light-grey p-4">
-      <search-paths-form></search-paths-form>
+      <search-paths-form
+        v-on:searchSubmit="setPaths"></search-paths-form>
     </div>
 
-    <path-fo></path-fo>
+    <path-fo :paths="paths"></path-fo>
 
   </div>
 </template>

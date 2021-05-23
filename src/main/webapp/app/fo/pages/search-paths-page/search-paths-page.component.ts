@@ -1,8 +1,8 @@
-import { mixins } from 'vue-class-component';
+import {mixins} from 'vue-class-component';
 
-import { Component, Vue, Inject } from 'vue-property-decorator';
+import {Component, Vue, Inject} from 'vue-property-decorator';
 import Vue2Filters from 'vue2-filters';
-import { IPath } from '@/shared/model/path.model';
+import {IPath} from '@/shared/model/path.model';
 
 // import PathService from './path.service';
 
@@ -13,6 +13,10 @@ export default class SearchPathsPage extends Vue {
 
   // Trajets reçus du formulaire de recherche
   public paths: IPath[] = []
+
+  public setPaths(paths: IPath[]) {
+    this.paths = paths;
+  }
 
   // @Inject('pathService') private pathService: () => PathService;
   // private removeId: number = null;

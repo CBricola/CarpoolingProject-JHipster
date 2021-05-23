@@ -110,6 +110,11 @@ FORM
   border-bottom: 0.0625rem solid rgb(85, 85, 85) !important;
 }
 
+.form-group textarea {
+  border-radius: 0 !important;
+  border: 0.0625rem solid rgb(85, 85, 85) !important;
+}
+
 /*********
 BACKGROUNDS
 *********/

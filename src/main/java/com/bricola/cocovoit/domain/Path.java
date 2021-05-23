@@ -43,6 +43,11 @@ public class Path implements Serializable {
     @Column(name = "arrival_place", nullable = false)
     private String arrivalPlace;
 
+    @NotNull
+    @Size(max = 200)
+    @Column(name = "comment", nullable = false)
+    private String comment;
+
     @OneToMany(mappedBy = "path")
     @JsonIgnoreProperties(value = { "user", "path" }, allowSetters = true)
     private Set<Registration> registrations = new HashSet<>();
@@ -125,6 +130,14 @@ public class Path implements Serializable {
         this.arrivalPlace = arrivalPlace;
     }
 
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
+
     public Set<Registration> getRegistrations() {
         return this.registrations;
     }
@@ -198,6 +211,7 @@ public class Path implements Serializable {
             ", numberOfPassengers=" + getNumberOfPassengers() +
             ", departurePlace='" + getDeparturePlace() + "'" +
             ", arrivalPlace='" + getArrivalPlace() + "'" +
+            ", comment='" + getComment() + "'" +
             "}";
     }
 }

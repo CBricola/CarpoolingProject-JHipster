@@ -9,18 +9,14 @@
     <div class="row justify-content-center">
       <div class="col-12">
         <form name="editForm" role="form" novalidate v-on:submit.prevent="save()">
-          <!--        <h2 id="cocovoitApp.path.home.createOrEditLabel" data-cy="PathCreateUpdateHeading">Create or edit a Path</h2>-->
           <div>
-            <!--          <div class="form-group" v-if="path.id">-->
-            <!--            <label for="id">ID</label>-->
-            <!--            <input type="text" class="form-control" id="id" name="id" v-model="path.id" readonly />-->
-            <!--          </div>-->
-
             <div class="form-group">
               <label class="form-control-label">Type de trajet</label>
-              <select class="custom-select input-orange" v-model="pathType" @change="updatePathType()">
-                <option value="aller">Trajet ALLER</option>
-                <option value="retour">Trajet RETOUR</option>
+              <select class="custom-select input-orange" v-model="$v.path.type.$model" @change="updatePathType()">
+                <option v-for="type in pathTypes"
+                        v-bind:value="type">
+                  Trajet <span class="text-uppercase">{{ type }}</span>
+                </option>
               </select>
             </div>
 
@@ -76,7 +72,7 @@
                 :class="{ valid: !$v.path.departurePlace.$invalid, invalid: $v.path.departurePlace.$invalid }"
                 v-model="$v.path.departurePlace.$model"
                 required
-                :disabled="pathType == 'retour'"
+                :disabled="path.type == 'Retour'"
               />
               <div v-if="$v.path.departurePlace.$anyDirty && $v.path.departurePlace.$invalid">
                 <small class="form-text text-danger" v-if="!$v.path.departurePlace.required"> Merci de saisir votre lieu
@@ -94,7 +90,7 @@
                 :class="{ valid: !$v.path.arrivalPlace.$invalid, invalid: $v.path.arrivalPlace.$invalid }"
                 v-model="$v.path.arrivalPlace.$model"
                 required
-                :disabled="pathType == 'aller'"
+                :disabled="path.type == 'Aller'"
               />
               <div v-if="$v.path.arrivalPlace.$anyDirty && $v.path.arrivalPlace.$invalid">
                 <small class="form-text text-danger" v-if="!$v.path.arrivalPlace.required">Merci de saisir votre lieu
@@ -102,23 +98,28 @@
               </div>
             </div>
 
-            <!--          <div class="form-group">-->
-            <!--            <label class="form-control-label" for="path-member">Member</label>-->
-            <!--            <select class="form-control" id="path-member" data-cy="member" name="member" v-model="path.member">-->
-            <!--              <option v-bind:value="null"></option>-->
-            <!--              <option-->
-            <!--                v-bind:value="path.member && memberOption.id === path.member.id ? path.member : memberOption"-->
-            <!--                v-for="memberOption in members"-->
-            <!--                :key="memberOption.id"-->
-            <!--              >-->
-            <!--                {{ memberOption.id }}-->
-            <!--              </option>-->
-            <!--            </select>-->
-            <!--          </div>-->
+            <div class="form-group">
+              <label class="form-control-label" for="path-comment">Commentaires (200 caractères max.)</label>
+              <textarea v-model="$v.path.comment.$model" name="comment" id="path-comment"
+                        class="form-control text-uppercase input-orange"
+                        :class="{ valid: !$v.path.comment.$invalid, invalid: $v.path.comment.$invalid }"
+                        placeholder="Commentaires sur le trajet"></textarea>
+              <!--              <textarea-->
+              <!--                class="form-control text-uppercase input-orange"-->
+              <!--                name="comment"-->
+              <!--                id="path-comment"-->
+              <!--                data-cy="comment"-->
+              <!--                :class="{ valid: !$v.path.comment.$invalid, invalid: $v.path.comment.$invalid }"-->
+              <!--                v-model="$v.path.comment.$model"-->
+              <!--              /></textarea>-->
+              <div v-if="$v.path.comment.$anyDirty && $v.path.comment.$invalid">
+                <small class="form-text text-danger" v-if="!$v.path.comment.maxLength">200 caractères maximum.</small>
+              </div>
+            </div>
+
           </div>
           <div>
             <button type="button" id="cancel-save" class="btn-orange btn-info-orange" v-on:click="previousState()">
-<!--              <font-awesome-icon icon="ban" class="icon"></font-awesome-icon>-->
               <span>Annuler</span>
             </button>
             <button
@@ -128,7 +129,7 @@
               :disabled="$v.path.$invalid || isSaving"
               class="btn-orange btn-primary-orange"
             >
-<!--              <font-awesome-icon icon="save"></font-awesome-icon>&nbsp;-->
+              <font-awesome-icon icon="save"></font-awesome-icon>&nbsp;
               <span>Valider</span>
             </button>
           </div>

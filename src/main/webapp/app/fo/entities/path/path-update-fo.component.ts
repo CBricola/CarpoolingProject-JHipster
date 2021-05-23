@@ -1,20 +1,21 @@
 import { Component, Vue, Inject } from 'vue-property-decorator';
 
-import { required, numeric } from 'vuelidate/lib/validators';
+import { required, numeric, maxLength } from 'vuelidate/lib/validators';
 import dayjs from 'dayjs';
 import { DATE_TIME_LONG_FORMAT } from '@/shared/date/filters';
 
 import RegistrationService from '@/bo/entities/registration/registration.service';
 import { IRegistration } from '@/shared/model/registration.model';
 
-import MemberService from '@/bo/entities/member/member.service';
-import { IMember } from '@/shared/model/member.model';
-
 import { IPath, Path } from '@/shared/model/path.model';
 import PathService from '@/bo/entities/path/path.service';
+import {PathType} from "@/shared/model/pathType.model";
 
 const validations: any = {
   path: {
+    type: {
+      // required,
+    },
     date: {
       required,
     },
@@ -28,6 +29,10 @@ const validations: any = {
     arrivalPlace: {
       required,
     },
+    comment: {
+      required,
+      maxLength: maxLength(200)
+    },
   },
 };
 
@@ -35,21 +40,22 @@ const validations: any = {
   validations,
 })
 export default class PathUpdateFo extends Vue {
-  @Inject('pathService') private pathService: () => PathService;
-  public path: IPath = new Path();
 
+  // Injection des services
+  @Inject('pathService') private pathService: () => PathService;
   @Inject('registrationService') private registrationService: () => RegistrationService;
 
+  public path: IPath = new Path();   // Trajet à créer ou modifier
   public registrations: IRegistration[] = [];
 
-  @Inject('memberService') private memberService: () => MemberService;
+  // récupération des valeurs de l'énumération PathType ("ALLER", "RETOUR")
+  // pour affichage dans le champ 'Type de trajet'
+  public pathTypes = Object.values(PathType);
 
-  public members: IMember[] = [];
   public isSaving = false;
-  public currentLanguage = '';
-  public pathType: string = '';
 
   beforeRouteEnter(to, from, next) {
+    // Si un ID est présent en paramètre de l'URL il s'agit d'un update -> on recherche alors le trajet concerné.
     next(vm => {
       if (to.params.pathId) {
         vm.retrievePath(to.params.pathId);
@@ -58,28 +64,26 @@ export default class PathUpdateFo extends Vue {
     });
   }
 
-  created(): void {
-    this.currentLanguage = this.$store.getters.currentLanguage;
-    this.$store.watch(
-      () => this.$store.getters.currentLanguage,
-      () => {
-        this.currentLanguage = this.$store.getters.currentLanguage;
-      }
-    );
-  }
-
+  /**
+   * A la modification de la valeur du champ 'Type de trajet', on défini automatiquement le lieu de départ ou d'arrivée.
+   * Exemple : Si le type de trajet est 'Aller', la valeur du champ 'Lieu d'arrivée' est 'Orange Atalante'.
+   */
   public updatePathType() {
-    if (this.pathType == 'aller') {
+    if (this.path.type == 'Aller') {
       this.path.arrivalPlace = 'Orange Atalante';
       this.path.departurePlace = '';
-    } else if (this.pathType == 'retour') {
+    } else if (this.path.type == 'Retour') {
       this.path.departurePlace = 'Orange Atalante';
       this.path.arrivalPlace = '';
     }
   }
 
+  /**
+   * Enregistrement du trajet (create ou update)
+   */
   public save(): void {
     this.isSaving = true;
+    // Si un ID est présent en paramètre de l'URL il s'agit d'un update
     if (this.path.id) {
       this.pathService()
         .update(this.path)
@@ -95,16 +99,17 @@ export default class PathUpdateFo extends Vue {
             autoHideDelay: 5000,
           });
         });
-    } else {
+    } else { // Si il n'y a pas d'ID il s'agit d'un create
       this.pathService()
         .create(this.path)
         .then(param => {
           this.isSaving = false;
           this.$router.go(-1);
-          const message = 'A Path is created with identifier ' + param.id;
+          // Affichage du message de succès de la création du trajet
+          const message = 'Nouveau trajet créé avec succès';
           this.$root.$bvToast.toast(message.toString(), {
             toaster: 'b-toaster-top-center',
-            title: 'Success',
+            title: 'Création réussie',
             variant: 'success',
             solid: true,
             autoHideDelay: 5000,
@@ -155,10 +160,10 @@ export default class PathUpdateFo extends Vue {
       .then(res => {
         this.registrations = res.data;
       });
-    this.memberService()
-      .retrieve()
-      .then(res => {
-        this.members = res.data;
-      });
+    // this.memberService()
+    //   .retrieve()
+    //   .then(res => {
+    //     this.members = res.data;
+    //   });
   }
 }

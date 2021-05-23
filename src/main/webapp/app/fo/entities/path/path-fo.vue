@@ -16,7 +16,7 @@
 <!--    </h2>-->
     <br />
     <div class="alert alert-warning" v-if="!isFetching && paths && paths.length === 0">
-      <span>No paths found</span>
+      <span>Aucun trajet trouvé</span>
     </div>
     <div class="table-responsive" v-if="paths && paths.length > 0">
       <table class="table table-striped" aria-describedby="paths">
@@ -29,7 +29,7 @@
               <span>Date</span> <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'date'"></jhi-sort-indicator>
             </th>
             <th scope="row" v-on:click="changeOrder('numberOfPassengers')">
-              <span>Nombre de places disponibles</span>
+              <span>Nb places dispo.</span>
               <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'numberOfPassengers'"></jhi-sort-indicator>
             </th>
             <th scope="row" v-on:click="changeOrder('departurePlace')">
@@ -39,6 +39,9 @@
             <th scope="row" v-on:click="changeOrder('arrivalPlace')">
               <span>Lieu d'arrivée</span>
               <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'arrivalPlace'"></jhi-sort-indicator>
+            </th>
+            <th scope="row">
+              <span>Commentaire</span>
             </th>
 <!--            <th scope="row" v-on:click="changeOrder('member.id')">-->
 <!--              <span>Member</span>-->
@@ -56,6 +59,7 @@
             <td>{{ path.numberOfPassengers }}</td>
             <td>{{ path.departurePlace }}</td>
             <td>{{ path.arrivalPlace }}</td>
+            <td>{{ path.comment }}</td>
 <!--            <td>-->
 <!--              <div v-if="path.member">-->
 <!--                <router-link :to="{ name: 'MemberView', params: { memberId: path.member.id } }">{{ path.member.id }}</router-link>-->
@@ -65,26 +69,26 @@
               <div class="btn-group">
                 <router-link :to="{ name: 'PathView', params: { pathId: path.id } }" custom v-slot="{ navigate }">
                   <button @click="navigate" class="btn btn-info btn-sm details" data-cy="entityDetailsButton">
-                    <font-awesome-icon icon="eye"></font-awesome-icon>
-                    <span class="d-none d-md-inline">View</span>
+<!--                    <font-awesome-icon icon="eye"></font-awesome-icon>-->
+                    <span class="d-none d-md-inline">Réserver</span>
                   </button>
                 </router-link>
-                <router-link :to="{ name: 'PathEdit', params: { pathId: path.id } }" custom v-slot="{ navigate }">
-                  <button @click="navigate" class="btn btn-primary btn-sm edit" data-cy="entityEditButton">
-                    <font-awesome-icon icon="pencil-alt"></font-awesome-icon>
-                    <span class="d-none d-md-inline">Edit</span>
-                  </button>
-                </router-link>
-                <b-button
-                  v-on:click="prepareRemove(path)"
-                  variant="danger"
-                  class="btn btn-sm"
-                  data-cy="entityDeleteButton"
-                  v-b-modal.removeEntity
-                >
-                  <font-awesome-icon icon="times"></font-awesome-icon>
-                  <span class="d-none d-md-inline">Delete</span>
-                </b-button>
+<!--                <router-link :to="{ name: 'PathEdit', params: { pathId: path.id } }" custom v-slot="{ navigate }">-->
+<!--                  <button @click="navigate" class="btn btn-primary btn-sm edit" data-cy="entityEditButton">-->
+<!--                    <font-awesome-icon icon="pencil-alt"></font-awesome-icon>-->
+<!--                    <span class="d-none d-md-inline">Edit</span>-->
+<!--                  </button>-->
+<!--                </router-link>-->
+<!--                <b-button-->
+<!--                  v-on:click="prepareRemove(path)"-->
+<!--                  variant="danger"-->
+<!--                  class="btn btn-sm"-->
+<!--                  data-cy="entityDeleteButton"-->
+<!--                  v-b-modal.removeEntity-->
+<!--                >-->
+<!--                  <font-awesome-icon icon="times"></font-awesome-icon>-->
+<!--                  <span class="d-none d-md-inline">Delete</span>-->
+<!--                </b-button>-->
               </div>
             </td>
           </tr>

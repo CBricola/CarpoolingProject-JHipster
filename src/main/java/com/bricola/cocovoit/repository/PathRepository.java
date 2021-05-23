@@ -31,6 +31,7 @@ public interface PathRepository extends JpaRepository<Path, Long> {
      * @param date
      * @return
      */
+    List<Path> findAllByArrivalPlaceContainingAndDateIsGreaterThanEqual(String arrivalPlace, Instant date);
     List<Path> findAllByArrivalPlaceLikeAndDateIsGreaterThanEqual(String arrivalPlace, Instant date);
     
     /**

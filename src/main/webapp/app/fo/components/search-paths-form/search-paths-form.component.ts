@@ -56,7 +56,7 @@ export default class SearchPathsForm extends Vue {
       .then(
         res => {
           this.paths = res.data;
-          this.$emit('searchPaths', this.paths);
+          this.$emit('searchSubmit', this.paths);
         },
         err => {
           // this.error = true;

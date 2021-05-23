@@ -106,9 +106,9 @@ public class PathService {
         // Recherche selon le type de trajet ("Aller" ou "Retour")
         List<Path> paths = null;
         if (pathType.equals(PathType.ALLER.getLabel())) {
-            paths = pathRepository.findAllByDeparturePlaceLikeAndDateIsGreaterThanEqual(departurePlace, pathDateInstant);
+            paths = pathRepository.findAllByDeparturePlaceContainingAndDateIsGreaterThanEqual(departurePlace, pathDateInstant);
         } else {
-            paths = pathRepository.findAllByArrivalPlaceLikeAndDateIsGreaterThanEqual(arrivalPlace, pathDateInstant);
+            paths = pathRepository.findAllByArrivalPlaceContainingAndDateIsGreaterThanEqual(arrivalPlace, pathDateInstant);
         }
 
         return paths;
