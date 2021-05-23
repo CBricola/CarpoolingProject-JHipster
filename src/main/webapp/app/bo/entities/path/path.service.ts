@@ -64,7 +64,7 @@ export default class PathService {
   */
   public retrievePathsByUserId( userId : string): Promise<any> {
 
-    // appel à l'API "api/paths/searchById"
+    // appel à l'API "api/paths/{id}"
     return new Promise<any>((resolve, reject) => {
       axios
         .post(baseApiUrl + "/search/" + userId)

@@ -22,8 +22,8 @@ public interface PathRepository extends JpaRepository<Path, Long> {
      * @param date
      * @return
      */
-    List<Path> findAllByDeparturePlaceLikeAndDateIsGreaterThanEqual(String departurePlace, Instant date);
-    
+    List<Path> findAllByDeparturePlaceContainingAndDateIsGreaterThanEqual(String departurePlace, Instant date);
+
 
     /**
      * Recherche des trajets "Retour" par date
@@ -32,13 +32,12 @@ public interface PathRepository extends JpaRepository<Path, Long> {
      * @return
      */
     List<Path> findAllByArrivalPlaceContainingAndDateIsGreaterThanEqual(String arrivalPlace, Instant date);
-    List<Path> findAllByArrivalPlaceLikeAndDateIsGreaterThanEqual(String arrivalPlace, Instant date);
-    
+
     /**
      * Recherche des trajets ayant le même créateur
      * @param userId Identifiant de l'utilisateur courant
      * @return Liste de trajet
      */
     List<Path> findAllByUserId(Long userId);
-    
+
 }
