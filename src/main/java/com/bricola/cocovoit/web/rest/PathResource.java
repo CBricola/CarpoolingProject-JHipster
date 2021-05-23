@@ -180,6 +180,21 @@ public class PathResource {
         return new ResponseEntity<>(paths, HttpStatus.OK);
 //        return ResponseEntity.ok().headers(headers).body(paths);
     }
+    
+    @PostMapping("/paths/search")
+    public ResponseEntity<List<Path>> getAllPathsByUserId(@PathVariable Long userId) throws ParseException {
+
+        log.debug("Requete GET pour obtenir une liste de trajets de l'utilisateur courant");
+        log.debug(">>>>> userId : " + userId);
+        
+//        Page<Path> page = pathService.findAll(pageable);
+        List<Path> paths = pathService.findAllByUserId(userId);
+
+//        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
+
+        return new ResponseEntity<>(paths, HttpStatus.OK);
+//        return ResponseEntity.ok().headers(headers).body(paths);
+    }
 
     /**
      * {@code GET  /paths/:id} : get the "id" path.

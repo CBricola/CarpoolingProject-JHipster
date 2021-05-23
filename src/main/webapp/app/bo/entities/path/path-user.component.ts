@@ -10,15 +10,20 @@ import PathService from './path.service';
   mixins: [Vue2Filters.mixin],
 })
 export default class PathUser extends Vue {
+
   @Inject('pathService') private pathService: () => PathService;
-  private removeId: number = null;
-  public itemsPerPage = 20;
-  public queryCount: number = null;
+
+  private removeId: number = null; //ID de l'instance à effacer
+  /* Variables pour la pagination */
+  public itemsPerPage = 20; 
+  public queryCount: number = null; 
   public page = 1;
   public previousPage = 1;
-  public propOrder = 'id';
-  public reverse = false;
   public totalItems = 0;
+  /* Varibale d'ordonancement */
+  public propOrder = 'date';
+  public reverse = false;
+ 
 
   public paths: IPath[] = [];
 
@@ -32,6 +37,10 @@ export default class PathUser extends Vue {
     this.page = 1;
     this.retrieveAllPaths();
   }
+  
+  public get userId(): string {
+    return this.$store.getters.account ? this.$store.getters.account.id : '';
+  }
 
   public retrieveAllPaths(): void {
     this.isFetching = true;
@@ -41,8 +50,11 @@ export default class PathUser extends Vue {
       size: this.itemsPerPage,
       sort: this.sort(),
     };
+
+    const userId = this.userId;
     this.pathService()
-      .retrieve(paginationQuery)
+    // Rajouter Id
+      .retrievePathsByUserId(userId)
       .then(
         res => {
           this.paths = res.data;
@@ -113,4 +125,6 @@ export default class PathUser extends Vue {
   public closeDialog(): void {
     (<any>this.$refs.removeEntity).hide();
   }
+
+
 }

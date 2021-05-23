@@ -58,6 +58,24 @@ export default class PathService {
         });
     });
   }
+  /**
+   * Appel à l'API permettant de récupérer une liste de trajets appartenant à l'utilisateur courant
+   * @param userId  id de l'utilisateur courant
+  */
+  public retrievePathsByUserId( userId : string): Promise<any> {
+
+    // appel à l'API "api/paths/searchById"
+    return new Promise<any>((resolve, reject) => {
+      axios
+        .post(baseApiUrl + "/search/" + userId)
+        .then(res => {
+          resolve(res);
+        })
+        .catch(err => {
+          reject(err);
+        });
+    });
+  }
 
   public delete(id: number): Promise<any> {
     return new Promise<any>((resolve, reject) => {

@@ -95,7 +95,7 @@ public class PathService {
      * @param departurePlace
      * @param arrivalPlace
      * @param pathDateString date au format String
-     * @return
+     * @return Liste de trajets
      */
     public List<Path> findAllBySearchCriteria(String pathType, String departurePlace, String arrivalPlace, String pathDateString) throws ParseException {
 
@@ -110,6 +110,21 @@ public class PathService {
         } else {
             paths = pathRepository.findAllByArrivalPlaceLikeAndDateIsGreaterThanEqual(arrivalPlace, pathDateInstant);
         }
+
+        return paths;
+    }
+    
+    /**
+     * Retourne une liste de trajets appartenant à l'utilisateur courant
+     * @param userId
+     * @return Liste de trajets
+    
+     * @return
+     */
+    public List<Path> findAllByUserId( Long userId) throws ParseException {
+
+        // Recherche des trajets ayant le même id d'utilisateur
+        List<Path> paths = pathRepository.findAllByUserId(userId);
 
         return paths;
     }
