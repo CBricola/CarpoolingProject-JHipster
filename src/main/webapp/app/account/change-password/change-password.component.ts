@@ -65,4 +65,8 @@ export default class ChangePassword extends Vue {
   public get username(): string {
     return this.$store.getters.account ? this.$store.getters.account.login : '';
   }
+
+  public previousState(): void {
+    this.$router.go(-1);
+  }
 }

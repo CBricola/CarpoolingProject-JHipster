@@ -4,10 +4,6 @@
       <div class="col-12">
         <h2 id="settings-title" class="subtitle-orange mb-5">
           Gérer mes informations
-          <!--          <span-->
-          <!--            >User settings for [<strong>{{ username }}</strong-->
-          <!--            >]</span-->
-          <!--          >-->
         </h2>
 
         <div class="alert alert-success" role="alert" v-if="success">
