@@ -24,15 +24,11 @@
         <!--            <span>Home</span>-->
         <!--          </span>-->
         <!--        </b-nav-item>-->
-        <b-nav-item-dropdown right id="entity-menu" v-if="authenticated" active-class="active" class="pointer" data-cy="entity">
+        <b-nav-item-dropdown right id="entity-menu" v-if="authenticated && hasAnyAuthority('ROLE_ADMIN')" active-class="active" class="pointer" data-cy="entity">
           <span slot="button-content" class="navbar-dropdown-menu">
             <font-awesome-icon icon="th-list" />
             <span class="no-bold">Gestion</span>
           </span>
-          <!--          <b-dropdown-item to="/member">-->
-          <!--            <font-awesome-icon icon="asterisk" />-->
-          <!--            <span>Member</span>-->
-          <!--          </b-dropdown-item>-->
           <b-dropdown-item to="/admin/user-management" active-class="active">
             <font-awesome-icon icon="users" />
             <span>Utilisateurs</span>
@@ -47,45 +43,6 @@
           </b-dropdown-item>
           <!-- jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here -->
         </b-nav-item-dropdown>
-        <!--        <b-nav-item-dropdown-->
-        <!--          right-->
-        <!--          id="admin-menu"-->
-        <!--          v-if="hasAnyAuthority('ROLE_ADMIN') && authenticated"-->
-        <!--          :class="{ 'router-link-active': subIsActive('/admin') }"-->
-        <!--          active-class="active"-->
-        <!--          class="pointer"-->
-        <!--          data-cy="adminMenu"-->
-        <!--        >-->
-        <!--          <span slot="button-content" class="navbar-dropdown-menu">-->
-        <!--            <font-awesome-icon icon="users-cog" />-->
-        <!--            <span class="no-bold">Metrics</span>-->
-        <!--          </span>-->
-        <!--          <b-dropdown-item to="/admin/user-management" active-class="active">-->
-        <!--            <font-awesome-icon icon="users" />-->
-        <!--            <span>User management</span>-->
-        <!--          </b-dropdown-item>-->
-        <!--          <b-dropdown-item to="/admin/metrics" active-class="active">-->
-        <!--            <font-awesome-icon icon="tachometer-alt" />-->
-        <!--            <span>Metrics</span>-->
-        <!--          </b-dropdown-item>-->
-        <!--          <b-dropdown-item to="/admin/health" active-class="active">-->
-        <!--            <font-awesome-icon icon="heart" />-->
-        <!--            <span>Health</span>-->
-        <!--          </b-dropdown-item>-->
-        <!--          <b-dropdown-item to="/admin/configuration" active-class="active">-->
-        <!--            <font-awesome-icon icon="cogs" />-->
-        <!--            <span>Configuration</span>-->
-        <!--          </b-dropdown-item>-->
-        <!--          <b-dropdown-item to="/admin/logs" active-class="active">-->
-        <!--            <font-awesome-icon icon="tasks" />-->
-        <!--            <span>Logs</span>-->
-        <!--          </b-dropdown-item>-->
-        <!--          <b-dropdown-item v-if="openAPIEnabled" to="/admin/docs" active-class="active">-->
-        <!--            <font-awesome-icon icon="book" />-->
-        <!--            <span>API</span>-->
-        <!--          </b-dropdown-item>-->
-        <!--        </b-nav-item-dropdown>-->
-
         <b-nav-item-dropdown
           v-if="authenticated"
           right
