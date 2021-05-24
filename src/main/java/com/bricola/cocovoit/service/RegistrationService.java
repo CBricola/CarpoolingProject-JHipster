@@ -19,9 +19,11 @@ public class RegistrationService {
 
     private final Logger log = LoggerFactory.getLogger(RegistrationService.class);
 
+    private final UserService userService;
     private final RegistrationRepository registrationRepository;
 
-    public RegistrationService(RegistrationRepository registrationRepository) {
+    public RegistrationService(UserService userService, RegistrationRepository registrationRepository) {
+        this.userService = userService;
         this.registrationRepository = registrationRepository;
     }
 
@@ -33,6 +35,10 @@ public class RegistrationService {
      */
     public Registration save(Registration registration) {
         log.debug("Request to save Registration : {}", registration);
+
+        // L'utilisateur associé à la réservation est l'utilisateur courant
+        registration.setUser(userService.getUserWithAuthorities().get());
+
         return registrationRepository.save(registration);
     }
 

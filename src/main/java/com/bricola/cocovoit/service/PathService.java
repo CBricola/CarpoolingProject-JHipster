@@ -1,6 +1,7 @@
 package com.bricola.cocovoit.service;
 
 import com.bricola.cocovoit.domain.Path;
+import com.bricola.cocovoit.domain.User;
 import com.bricola.cocovoit.domain.enumeration.PathType;
 import com.bricola.cocovoit.repository.PathRepository;
 import com.bricola.cocovoit.repository.RegistrationRepository;
@@ -8,7 +9,6 @@ import com.bricola.cocovoit.repository.RegistrationRepository;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,11 +28,13 @@ public class PathService {
 
     private final Logger log = LoggerFactory.getLogger(PathService.class);
 
+    private final UserService userService;
     private final PathRepository pathRepository;
-    
+
     private final RegistrationRepository registrationRepository;
 
-    public PathService(PathRepository pathRepository, RegistrationRepository registrationRepository) {
+    public PathService(UserService userService, PathRepository pathRepository) {
+        this.userService = userService;
         this.pathRepository = pathRepository;
         this.registrationRepository = registrationRepository;
     }
@@ -45,6 +47,10 @@ public class PathService {
      */
     public Path save(Path path) {
         log.debug("Request to save Path : {}", path);
+
+        // L'utilisateur associé au trajet est l'utilisateur courant
+        path.setUser(userService.getUserWithAuthorities().get());
+
         return pathRepository.save(path);
     }
 
@@ -110,19 +116,19 @@ public class PathService {
         // Recherche selon le type de trajet ("Aller" ou "Retour")
         List<Path> paths = null;
         if (pathType.equals(PathType.ALLER.getLabel())) {
-            paths = pathRepository.findAllByDeparturePlaceContainingAndDateIsGreaterThanEqual(departurePlace, pathDateInstant);
+            paths = pathRepository.findAllAvailableByDeparturePlace(departurePlace, pathDateInstant);
         } else {
             paths = pathRepository.findAllByArrivalPlaceContainingAndDateIsGreaterThanEqual(arrivalPlace, pathDateInstant);
         }
 
         return paths;
     }
-    
+
     /**
      * Retourne une liste de trajets appartenant à l'utilisateur courant
      * @param userId
      * @return Liste de trajets
-    
+
      * @return
      */
     public List<Path> findAllByUserId( Long userId) throws ParseException {
@@ -153,7 +159,7 @@ public class PathService {
     public void delete(Long id) {
     	log.debug("Request to delete registration when id : {}", id);
     	registrationRepository.deleteByPathId(id);
-    	
+
         log.debug("Request to delete Path : {}", id);
         pathRepository.deleteById(id);
     }

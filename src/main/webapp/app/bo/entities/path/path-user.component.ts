@@ -15,15 +15,15 @@ export default class PathUser extends Vue {
 
   private removeId: number = null; //ID de l'instance à effacer
   /* Variables pour la pagination */
-  public itemsPerPage = 20; 
-  public queryCount: number = null; 
+  public itemsPerPage = 20;
+  public queryCount: number = null;
   public page = 1;
   public previousPage = 1;
   public totalItems = 0;
   /* Varibale d'ordonancement */
   public propOrder = 'date';
   public reverse = false;
- 
+
 
   public paths: IPath[] = [];
 
@@ -37,7 +37,7 @@ export default class PathUser extends Vue {
     this.page = 1;
     this.retrieveAllPaths();
   }
-  
+
   public get userId(): string {
     return this.$store.getters.account ? this.$store.getters.account.id : '';
   }
@@ -57,6 +57,7 @@ export default class PathUser extends Vue {
       .then(
         res => {
           this.paths = res.data;
+          console.log(this.paths);
           this.totalItems = Number(res.headers['x-total-count']);
           this.queryCount = this.totalItems;
           this.isFetching = false;

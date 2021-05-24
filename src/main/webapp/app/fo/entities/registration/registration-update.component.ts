@@ -1,9 +1,6 @@
 import { Component, Vue, Inject } from 'vue-property-decorator';
 
-import MemberService from '@/entities/member/member.service';
-import { IMember } from '@/shared/model/member.model';
-
-import PathService from '@/entities/path/path.service';
+import PathService from '@/bo/entities/path/path.service';
 import { IPath } from '@/shared/model/path.model';
 
 import { IRegistration, Registration } from '@/shared/model/registration.model';
@@ -19,10 +16,6 @@ const validations: any = {
 export default class RegistrationUpdate extends Vue {
   @Inject('registrationService') private registrationService: () => RegistrationService;
   public registration: IRegistration = new Registration();
-
-  @Inject('memberService') private memberService: () => MemberService;
-
-  public members: IMember[] = [];
 
   @Inject('pathService') private pathService: () => PathService;
 
@@ -97,11 +90,6 @@ export default class RegistrationUpdate extends Vue {
   }
 
   public initRelationships(): void {
-    this.memberService()
-      .retrieve()
-      .then(res => {
-        this.members = res.data;
-      });
     this.pathService()
       .retrieve()
       .then(res => {

@@ -6,23 +6,23 @@
           Create or edit a Registration
         </h2>
         <div>
-          <div class="form-group" v-if="registration.id">
-            <label for="id">ID</label>
-            <input type="text" class="form-control" id="id" name="id" v-model="registration.id" readonly />
-          </div>
-          <div class="form-group">
-            <label class="form-control-label" for="registration-member">Member</label>
-            <select class="form-control" id="registration-member" data-cy="member" name="member" v-model="registration.member">
-              <option v-bind:value="null"></option>
-              <option
-                v-bind:value="registration.member && memberOption.id === registration.member.id ? registration.member : memberOption"
-                v-for="memberOption in members"
-                :key="memberOption.id"
-              >
-                {{ memberOption.id }}
-              </option>
-            </select>
-          </div>
+<!--          <div class="form-group" v-if="registration.id">-->
+<!--            <label for="id">ID</label>-->
+<!--            <input type="text" class="form-control" id="id" name="id" v-model="registration.id" readonly />-->
+<!--          </div>-->
+<!--          <div class="form-group">-->
+<!--            <label class="form-control-label" for="registration-member">Member</label>-->
+<!--            <select class="form-control" id="registration-member" data-cy="member" name="member" v-model="registration.member">-->
+<!--              <option v-bind:value="null"></option>-->
+<!--              <option-->
+<!--                v-bind:value="registration.member && memberOption.id === registration.member.id ? registration.member : memberOption"-->
+<!--                v-for="memberOption in members"-->
+<!--                :key="memberOption.id"-->
+<!--              >-->
+<!--                {{ memberOption.id }}-->
+<!--              </option>-->
+<!--            </select>-->
+<!--          </div>-->
           <div class="form-group">
             <label class="form-control-label" for="registration-path">Path</label>
             <select class="form-control" id="registration-path" data-cy="path" name="path" v-model="registration.path">

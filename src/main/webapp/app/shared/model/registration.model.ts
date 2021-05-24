@@ -1,12 +1,12 @@
-import { IMember } from '@/shared/model/member.model';
 import { IPath } from '@/shared/model/path.model';
+import {IUser} from "@/shared/model/user.model";
 
 export interface IRegistration {
   id?: number;
-  member?: IMember | null;
+  user?: IUser | null;
   path?: IPath | null;
 }
 
 export class Registration implements IRegistration {
-  constructor(public id?: number, public member?: IMember | null, public path?: IPath | null) {}
+  constructor(public id?: number, public user?: IUser | null, public path?: IPath | null) {}
 }

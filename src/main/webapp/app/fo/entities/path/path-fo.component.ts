@@ -1,13 +1,17 @@
 import {Component, Vue, Inject, Prop} from 'vue-property-decorator';
 import Vue2Filters from 'vue2-filters';
-import { IPath } from '@/shared/model/path.model';
+import {IPath} from '@/shared/model/path.model';
 
-import PathService from '@/bo/entities/path/path.service';
+import {IRegistration, Registration} from "@/shared/model/registration.model";
+import RegistrationService from "@/bo/entities/registration/registration.service";
 
 @Component({
   mixins: [Vue2Filters.mixin],
 })
 export default class PathFo extends Vue {
+
+  // Injection du service lié aux réservations -> permettre la réservation sur un trajet sélectionné
+  @Inject('registrationService') private registrationService: () => RegistrationService;
 
   // Liste de trajets reçus du composant de recherche de trajets
   @Prop() public paths: IPath[] = null;
@@ -24,6 +28,31 @@ export default class PathFo extends Vue {
   public reverse = false;
 
   public isFetching = false;
+
+  /**
+   * Créer une inscription pour le trajet selectionné
+   * @param path trajet sélectionné
+   */
+  public registerToPath(path: IPath) {
+    // On instancie une nouvelle réservation à laquelle on associe le trajet sélectionné à la réservation
+    let registration = new Registration();
+    registration.path = path;
+
+    // Appel au service de réservation pour enregistrement de la nouvelle réservation
+    this.registrationService()
+      .create(registration)
+      .then(param => {
+        this.$router.go(-1);
+        const message = 'Votre réservation a bien été prise en compte';
+        this.$root.$bvToast.toast(message.toString(), {
+          toaster: 'b-toaster-top-center',
+          title: 'Réservation enregistrée',
+          variant: 'success',
+          solid: true,
+          autoHideDelay: 5000,
+        });
+      });
+  }
 
   /**
    * Tri des résultats selon la colonne choisie
