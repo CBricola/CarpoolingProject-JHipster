@@ -8,12 +8,6 @@ import { EMAIL_ALREADY_USED_TYPE, LOGIN_ALREADY_USED_TYPE } from '@/constants';
 const loginPattern = helpers.regex('alpha', /^[a-zA-Z0-9!$&*+=?^_`{|}~.-]+@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*$|^[_.@A-Za-z0-9-]+$/);
 const validations: any = {
   registerAccount: {
-    login: {
-      required,
-      minLength: minLength(1),
-      maxLength: maxLength(50),
-      pattern: loginPattern,
-    },
     email: {
       required,
       minLength: minLength(5),
@@ -55,6 +49,8 @@ export default class Register extends Vue {
   public success = false;
 
   public register(): void {
+    // On défini le login comme étant l'adresse email
+    this.registerAccount.login = this.registerAccount.email;
     this.error = null;
     this.errorUserExists = null;
     this.errorEmailExists = null;

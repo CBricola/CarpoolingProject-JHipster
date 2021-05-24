@@ -6,6 +6,7 @@ import App from './app.vue';
 import Vue2Filters from 'vue2-filters';
 import { ToastPlugin } from 'bootstrap-vue';
 import router from './router';
+import moment from 'moment'
 import * as config from './shared/config/config';
 import * as bootstrapVueConfig from './shared/config/config-bootstrap-vue';
 import JhiItemCountComponent from './shared/jhi-item-count.vue';
@@ -71,6 +72,13 @@ router.beforeEach((to, from, next) => {
   } else {
     // no authorities, so just proceed
     next();
+  }
+});
+
+// Filtre pour l'affichage des dates et heures
+Vue.filter('formatDateTime', function (value) {
+  if (value) {
+    return moment(String(value)).format('DD/MM/YYYY HH:mm');
   }
 });
 

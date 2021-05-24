@@ -71,10 +71,10 @@ export default class Path extends Vue {
     this.pathService()
       .delete(this.removeId)
       .then(() => {
-        const message = 'A Path is deleted with identifier ' + this.removeId;
+        const message = 'Le trajet a été supprimé ';
         this.$bvToast.toast(message.toString(), {
           toaster: 'b-toaster-top-center',
-          title: 'Info',
+          title: 'Suppression',
           variant: 'danger',
           solid: true,
           autoHideDelay: 5000,

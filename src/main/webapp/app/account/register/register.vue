@@ -1,57 +1,25 @@
 <template>
   <div>
-    <div class="row justify-content-center">
-      <div class="col-md-8 toastify-container">
-        <h1 id="register-title" data-cy="registerTitle">Registration</h1>
+    <div class="row">
+      <div class="col-12">
+        <h2 id="register-title" data-cy="registerTitle" class="subtitle-orange mb-5">Registration</h2>
 
         <div class="alert alert-success" role="alert" v-if="success">
-          <strong>Registration saved!</strong> Please check your email for confirmation.
+          <strong>Compte utilisateur créé !</strong> Merci de consulter vos emails afin de confirmer votre création de compte.
         </div>
 
-        <div class="alert alert-danger" role="alert" v-if="error"><strong>Registration failed!</strong> Please try again later.</div>
-
-        <div class="alert alert-danger" role="alert" v-if="errorUserExists">
-          <strong>Login name already registered!</strong> Please choose another one.
-        </div>
+        <div class="alert alert-danger" role="alert" v-if="error"><strong>Une erreur est survenue lors de la création de compte</strong></div>
 
         <div class="alert alert-danger" role="alert" v-if="errorEmailExists">
-          <strong>Email is already in use!</strong> Please choose another one.
+          <strong>Adresse email déjà utilisée. </strong> Merci de saisir une autre adresse email.
         </div>
       </div>
     </div>
     <div class="row justify-content-center">
-      <div class="col-md-8">
+      <div class="col-12">
         <form id="register-form" name="registerForm" role="form" v-on:submit.prevent="register()" v-if="!success" no-validate>
           <div class="form-group">
-            <label class="form-control-label" for="username">Username</label>
-            <input
-              type="text"
-              class="form-control"
-              v-model="$v.registerAccount.login.$model"
-              id="username"
-              name="login"
-              :class="{ valid: !$v.registerAccount.login.$invalid, invalid: $v.registerAccount.login.$invalid }"
-              required
-              minlength="1"
-              maxlength="50"
-              pattern="^[a-zA-Z0-9!#$&'*+=?^_`{|}~.-]+@?[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$"
-              data-cy="username"
-            />
-            <div v-if="$v.registerAccount.login.$anyDirty && $v.registerAccount.login.$invalid">
-              <small class="form-text text-danger" v-if="!$v.registerAccount.login.required"> Your username is required. </small>
-              <small class="form-text text-danger" v-if="!$v.registerAccount.login.minLength">
-                Your username is required to be at least 1 character.
-              </small>
-              <small class="form-text text-danger" v-if="!$v.registerAccount.login.maxLength">
-                Your username cannot be longer than 50 characters.
-              </small>
-              <small class="form-text text-danger" v-if="!$v.registerAccount.login.pattern">
-                Your username can only contain letters and digits.
-              </small>
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="form-control-label" for="email">Email</label>
+            <label class="form-control-label" for="email">Adresse email Orange</label>
             <input
               type="email"
               class="form-control"
@@ -77,7 +45,7 @@
             </div>
           </div>
           <div class="form-group">
-            <label class="form-control-label" for="firstPassword">New password</label>
+            <label class="form-control-label" for="firstPassword">Mot de passe</label>
             <input
               type="password"
               class="form-control"
@@ -101,7 +69,7 @@
             </div>
           </div>
           <div class="form-group">
-            <label class="form-control-label" for="secondPassword">New password confirmation</label>
+            <label class="form-control-label" for="secondPassword">Mot de passe (confirmation)</label>
             <input
               type="password"
               class="form-control"
@@ -128,17 +96,11 @@
             </div>
           </div>
 
-          <button type="submit" :disabled="$v.$invalid" class="btn btn-primary" data-cy="submit">Register</button>
+          <button type="submit" :disabled="$v.$invalid" class="btn-orange btn-primary-orange" data-cy="submit">
+            Valider
+          </button>
         </form>
-        <p></p>
-        <div class="alert alert-warning">
-          <span>If you want to </span>
-          <a class="alert-link" v-on:click="openLogin()">sign in</a
-          ><span
-            >, you can try the default accounts:<br />- Administrator (login="admin" and password="admin") <br />- User (login="user" and
-            password="user").</span
-          >
-        </div>
+
       </div>
     </div>
   </div>
