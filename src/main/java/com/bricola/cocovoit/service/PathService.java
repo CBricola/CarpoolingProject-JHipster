@@ -33,7 +33,7 @@ public class PathService {
 
     private final RegistrationRepository registrationRepository;
 
-    public PathService(UserService userService, PathRepository pathRepository) {
+    public PathService(UserService userService, PathRepository pathRepository, RegistrationRepository registrationRepository) {
         this.userService = userService;
         this.pathRepository = pathRepository;
         this.registrationRepository = registrationRepository;
@@ -118,7 +118,7 @@ public class PathService {
         if (pathType.equals(PathType.ALLER.getLabel())) {
             paths = pathRepository.findAllAvailableByDeparturePlace(departurePlace, pathDateInstant);
         } else {
-            paths = pathRepository.findAllByArrivalPlaceContainingAndDateIsGreaterThanEqual(arrivalPlace, pathDateInstant);
+            paths = pathRepository.findAllAvailableByArrivalPlace(arrivalPlace, pathDateInstant);
         }
 
         return paths;

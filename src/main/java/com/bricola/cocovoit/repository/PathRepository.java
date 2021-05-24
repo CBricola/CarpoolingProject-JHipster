@@ -56,7 +56,7 @@ public interface PathRepository extends JpaRepository<Path, Long> {
         "AND p.date >= :date " +
         "ORDER BY p.date",
         nativeQuery = true)
-    List<Path> findAllByArrivalPlaceContainingAndDateIsGreaterThanEqual(@Param("arrivalPlace") String arrivalPlace,
+    List<Path> findAllAvailableByArrivalPlace(@Param("arrivalPlace") String arrivalPlace,
                                                                         @Param("date") Instant date);
 
     /**
