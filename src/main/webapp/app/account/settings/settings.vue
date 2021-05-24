@@ -1,25 +1,26 @@
 <template>
   <div>
     <div class="row justify-content-center">
-      <div class="col-md-8 toastify-container">
-        <h2 v-if="username" id="settings-title">
-          <span
-            >User settings for [<strong>{{ username }}</strong
-            >]</span
-          >
+      <div class="col-12">
+        <h2 id="settings-title" class="subtitle-orange mb-5">
+          Gérer mes informations
+          <!--          <span-->
+          <!--            >User settings for [<strong>{{ username }}</strong-->
+          <!--            >]</span-->
+          <!--          >-->
         </h2>
 
         <div class="alert alert-success" role="alert" v-if="success">
-          <strong>Settings saved!</strong>
+          <strong>Informations enregistrées avec succès</strong>
         </div>
 
         <div class="alert alert-danger" role="alert" v-if="errorEmailExists">
-          <strong>Email is already in use!</strong> Please choose another one.
+          <strong>Email déjà utilisé</strong> Merci de saisir une autre adresse email.
         </div>
 
         <form name="form" id="settings-form" role="form" v-on:submit.prevent="save()" v-if="settingsAccount" novalidate>
           <div class="form-group">
-            <label class="form-control-label" for="firstName">First Name</label>
+            <label class="form-control-label" for="firstName">Prénom</label>
             <input
               type="text"
               class="form-control"
@@ -33,17 +34,18 @@
               data-cy="firstname"
             />
             <div v-if="$v.settingsAccount.firstName.$anyDirty && $v.settingsAccount.firstName.$invalid">
-              <small class="form-text text-danger" v-if="!$v.settingsAccount.firstName.required"> Your first name is required. </small>
+              <small class="form-text text-danger" v-if="!$v.settingsAccount.firstName.required"> Merci de saisir votre
+                prénom </small>
               <small class="form-text text-danger" v-if="!$v.settingsAccount.firstName.minLength">
-                Your first name is required to be at least 1 character.
+                Votre prénom doit faire au moins 1 caractère
               </small>
               <small class="form-text text-danger" v-if="!$v.settingsAccount.firstName.maxLength">
-                Your first name cannot be longer than 50 characters.
+                Votre prénom doit faire moins de 50 caractères
               </small>
             </div>
           </div>
           <div class="form-group">
-            <label class="form-control-label" for="lastName">Last Name</label>
+            <label class="form-control-label" for="lastName">Nom</label>
             <input
               type="text"
               class="form-control"
@@ -57,17 +59,18 @@
               data-cy="lastname"
             />
             <div v-if="$v.settingsAccount.lastName.$anyDirty && $v.settingsAccount.lastName.$invalid">
-              <small class="form-text text-danger" v-if="!$v.settingsAccount.lastName.required"> Your last name is required. </small>
+              <small class="form-text text-danger" v-if="!$v.settingsAccount.lastName.required"> Merci de saisir votre
+                nom </small>
               <small class="form-text text-danger" v-if="!$v.settingsAccount.lastName.minLength">
-                Your last name is required to be at least 1 character.
+                Votre nom doit faire au moins 1 caractère
               </small>
               <small class="form-text text-danger" v-if="!$v.settingsAccount.lastName.maxLength">
-                Your last name cannot be longer than 50 characters.
+                Votre nom doit faire moins de 50 caractères
               </small>
             </div>
           </div>
           <div class="form-group">
-            <label class="form-control-label" for="email">Email</label>
+            <label class="form-control-label" for="email">Adresse email Orange</label>
             <input
               type="email"
               class="form-control"
@@ -82,23 +85,29 @@
               data-cy="email"
             />
             <div v-if="$v.settingsAccount.email.$anyDirty && $v.settingsAccount.email.$invalid">
-              <small class="form-text text-danger" v-if="!$v.settingsAccount.email.required"> Your email is required. </small>
-              <small class="form-text text-danger" v-if="!$v.settingsAccount.email.email"> Your email is invalid. </small>
+              <small class="form-text text-danger" v-if="!$v.settingsAccount.email.required"> Merci de saisir votre
+                adresse email </small>
+              <small class="form-text text-danger" v-if="!$v.settingsAccount.email.email"> Votre adresse email est
+                invalide </small>
               <small class="form-text text-danger" v-if="!$v.settingsAccount.email.minLength">
-                Your email is required to be at least 5 characters.
+                Votre adresse email doit faire au moins 5 caractères
               </small>
               <small class="form-text text-danger" v-if="!$v.settingsAccount.email.maxLength">
-                Your email cannot be longer than 100 characters.
+                Votre adresse email doit faire moins de 100 caractères
               </small>
             </div>
           </div>
-          <div class="form-group" v-if="languages && Object.keys(languages).length > 1">
-            <label for="langKey">Language</label>
-            <select class="form-control" id="langKey" name="langKey" v-model="settingsAccount.langKey" data-cy="langKey">
-              <option v-for="(language, key) in languages" :value="key" :key="`lang-${key}`">{{ language.name }}</option>
-            </select>
+
+          <div class="mt-3">
+            <button type="button" id="cancel-save" class="btn-orange btn-info-orange" v-on:click="previousState()">
+              <span>Annuler</span>
+            </button>
+            <button type="submit" :disabled="$v.settingsAccount.$invalid" class="btn-orange btn-primary-orange"
+                    data-cy="submit">
+              <font-awesome-icon icon="save"></font-awesome-icon>&nbsp;
+              <span>Valider</span>
+            </button>
           </div>
-          <button type="submit" :disabled="$v.settingsAccount.$invalid" class="btn btn-primary" data-cy="submit">Save</button>
         </form>
       </div>
     </div>
