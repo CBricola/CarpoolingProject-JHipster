@@ -36,7 +36,7 @@
         <tbody>
         <tr v-for="path in paths" :key="path.id" data-cy="entityTable">
           <td>{{ path.date | formatDate }}</td>
-          <td>{{ path.numberOfPassengers }} <span v-if="path.registration">{{ path.registration.id }}</span></td>
+          <td>{{ getRemainingPlaces(path) }} / {{ path.numberOfPassengers }}</td>
           <td>{{ path.departurePlace }}</td>
           <td>{{ path.arrivalPlace }}</td>
           <td>{{ path.comment }}</td>

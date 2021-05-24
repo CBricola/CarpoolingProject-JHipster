@@ -49,7 +49,7 @@ public class Path implements Serializable {
     private String comment;
 
     @OneToMany(mappedBy = "path")
-    @JsonIgnoreProperties(value = { "user", "path" }, allowSetters = true)
+//    @JsonIgnoreProperties(value = { "user", "path" }, allowSetters = true)
     private Set<Registration> registrations = new HashSet<>();
 
     @ManyToOne
@@ -212,6 +212,7 @@ public class Path implements Serializable {
             ", departurePlace='" + getDeparturePlace() + "'" +
             ", arrivalPlace='" + getArrivalPlace() + "'" +
             ", comment='" + getComment() + "'" +
+            ", registrations='" + getRegistrations() + "'" +
             "}";
     }
 }

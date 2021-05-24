@@ -30,6 +30,15 @@ export default class PathFo extends Vue {
   public isFetching = false;
 
   /**
+   * Retourne le nombres de places disponibles pour ce trajet
+   * Basé sur le nombre de réservations déjà effectuées pour ce trajet par rapport au nombre total de places disponibles
+   * @param path
+   */
+  public getRemainingPlaces(path: IPath) {
+    return path.numberOfPassengers - path.registrations.length;
+  }
+
+  /**
    * Créer une inscription pour le trajet selectionné
    * @param path trajet sélectionné
    */
