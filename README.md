@@ -1,1 +1,1 @@
-# covoiurageAtalante
+# CarpoolingProject - JHipster
